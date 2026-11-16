@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>MAITV • Input Lab</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <p class="eyebrow">Lumen Helix Solutions / MAITV</p>
+      <h1>MAITV Input Lab</h1>
+      <p class="intro">Non-invasive controller navigation prototype for Vizio V655-H9.</p>
+    </header>
+    <section class="tiles" aria-label="MAITV test menu" id="menu">
+      <button type="button" class="tile" data-maitv-item data-panel="bridge"><strong>Bridge</strong><span>Recovery status</span></button>
+      <button type="button" class="tile" data-maitv-item data-panel="remote"><strong>Remote</strong><span>D-pad, OK and Back</span></button>
+      <button type="button" class="tile" data-maitv-item data-panel="addons"><strong>Add-ons</strong><span>Stremio and Torrentio</span></button>
+      <button type="button" class="tile" data-maitv-item data-panel="safety"><strong>Safety</strong><span>No firmware changes</span></button>
+    </section>
+    <section class="status" aria-live="polite">
+      <h2 id="panel-title">Keyboard input test</h2>
+      <p id="panel-text">Use arrow keys, Enter and Escape/Backspace. On-TV remote input has not been verified.</p>
+      <p class="event"><span>Last event:</span> <output id="last-event">None</output></p>
+    </section>
+    <footer>Local-only prototype • no device pairing • no firmware write</footer>
+  </main>
+  <script type="module" src="./main.mjs"></script>
+</body>
+</html>

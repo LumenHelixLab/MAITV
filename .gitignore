@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+logs/
+dist/
+coverage/
+*.local.json
+*token*
+*secret*
+*.bak
+.DS_Store
+Thumbs.db

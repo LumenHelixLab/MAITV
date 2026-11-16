@@ -1,0 +1,20 @@
+:root { font-family: system-ui, -apple-system, Segoe UI, sans-serif; color: #f1f5f9; background: #090e1b; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; }
+.shell { max-width: 960px; margin: 0 auto; padding: 48px 26px; }
+.eyebrow { font-size: 0.8rem; color: #8bc6ff; text-transform: uppercase; letter-spacing: .18em; }
+h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; margin: 10px 0; }
+.intro { color: #aebdd1; }
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 34px 0; }
+.tile { cursor: pointer; padding: 30px 24px; text-align: left; color: inherit; background: #151e33; border: 2px solid #34405b; border-radius: 16px; min-height: 150px; }
+.tile strong { display: block; font-size: 1.45rem; margin-bottom: 12px; }
+.tile span { color: #9fb1ca; font-size: .95rem; }
+.tile:focus-visible { outline: 4px solid #80d2ff; outline-offset: 3px; background: #223757; }
+.tile:hover { border-color: #6cb6f0; }
+.status { background: #111a2c; padding: 22px 26px; border-radius: 14px; border: 1px solid #2d3b57; }
+.status h2 { margin: 0 0 12px; }
+.status p { color: #c9d5e6; line-height: 1.55; }
+.event { font-family: ui-monospace, Consolas, monospace; font-size: .86rem; }
+.event span { color: #97abc8; }
+footer { color: #7086a6; font-size: .8rem; margin-top: 28px; }
+@media (max-width: 550px) { .tiles { grid-template-columns: 1fr; } .tile { min-height: 110px; } }
