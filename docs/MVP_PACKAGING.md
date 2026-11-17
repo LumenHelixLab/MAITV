@@ -2,7 +2,7 @@
 
 ## Product definition
 
-**MAITV** is a local-first SmartCast control platform, initially targeting the Vizio V655-H9. An Android 0.4 debug alpha was privately released; 0.5.0-alpha2 adds mDNS discovery, touchpad gestures, and new tests. Verify the newer prerelease from GitHub before downloading. It does not replace or flash ViziOS. The product's differentiation is direct navigation, one-tap Stremio Web, secure pairing and eventually keyboard search without requiring Chromecast or a TV-side APK.
+**MAITV** is a local-first SmartCast control platform, initially targeting the Vizio V655-H9. Android 0.5.0-alpha2 is privately released at https://github.com/LumenHelixLab/MAITV/releases/tag/v0.5.0-alpha2 . It adds opt-in mDNS discovery, gesture remote, haptic feedback and three new JVM tests. The earlier 0.4 debug release remains historical only. It does not replace or flash ViziOS. The product's differentiation is direct navigation, one-tap Stremio Web, secure pairing and eventually keyboard search without requiring Chromecast or a TV-side APK.
 
 ### Android alpha (packaged in this milestone)
 

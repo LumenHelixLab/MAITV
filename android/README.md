@@ -40,7 +40,7 @@ $env:ANDROID_HOME="$env:LOCALAPPDATA\Android\Sdk"
 .\gradlew.bat :app:testDebugUnitTest :app:assembleDebug
 ~~~
 
-The debug APK lands at app/build/outputs/apk/debug/app-debug.apk. Android Lint builds successfully; the remaining nonblocking warnings flag the deliberately device-scoped self-signed TLS trust manager (pin applied during pairing) and synchronous credential persistence (used off the UI thread to guarantee a saved pairing). Both need independent review before a production release. Install manually on an authorized Android phone after reviewing the installation warning. Do **not** distribute this debug-signed APK as a production release; validate it on the TV, complete the security review, and sign with the organization's release signing key first.
+**Private v0.5.0-alpha2 download:** https://github.com/LumenHelixLab/MAITV/releases/tag/v0.5.0-alpha2 (requires an authorized GitHub account). The debug APK also builds locally at app/build/outputs/apk/debug/app-debug.apk. Android Lint builds successfully; the remaining nonblocking warnings flag the deliberately device-scoped self-signed TLS trust manager (pin applied during pairing) and synchronous credential persistence (used off the UI thread to guarantee a saved pairing). Both need independent review before a production release. Install manually on an authorized Android phone after reviewing the installation warning. Do **not** distribute this debug-signed APK as a production release; validate it on the TV, complete the security review, and sign with the organization's release signing key first.
 
 ## Architecture and security
 
