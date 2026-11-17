@@ -4,7 +4,8 @@
 Provide reliable home-screen control and app integration for Vizio V655-H9 while leaving installed firmware untouched.
 
 ## Phase 0 — Recovery
-- Locate MAITV/Stremio source on OmniBook when available.
+- Original MA.I.TV handoff and Conjure architecture recovered from connected Drive project notes; see `LEGACY_RECOVERY.md`.
+- Locate MAITV/Stremio **source code** on OmniBook when available.
 - Inspect only relevant code, identify bridge architecture and test commands.
 - Check Danu's port 11470 and process ownership before deciding whether to restart any service.
 - Document exact TV WebView/launcher runtime and input event surface.

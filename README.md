@@ -43,7 +43,7 @@ The name is spelled **M-A-I-T-V**. This repository is maintained under **LumenHe
 |:--|:--|:--|
 | **Remote navigation** | On-screen keyboard-event inspector, legacy keyCode fallback, focus grid, select/back and automated tests | Capture and validate physical Vizio remote events |
 | **Custom home** | Responsive four-tile browser mockup with a visible focus indicator | An optional, reversible launcher adapter |
-| **Stremio integration** | Recovery notes for a previously working bridge (source not yet located) | Recover source, verify transport and navigation |
+| **Stremio integration** | Original MA.I.TV handoff and Conjure launch findings recovered; bridge source still missing | Recover source, verify transport and navigation |
 | **Add-ons** | Stremio/Torrentio integration plan | Test account synchronization and playback separately |
 | **OS research** | Model/firmware inventory and matching open-source research reference | Compatibility audits before any device-specific experiment |
 | **Privacy** | In-memory sanitized input logs; localhost-only by default; no pairing tokens | Controlled on-TV testing and opt-in network analysis |
@@ -110,7 +110,7 @@ flowchart LR
 | Related source disclosure | [Vizio 5691 / FUR7.2 OpenSourceSoftware](https://github.com/opensource-vizio/5691_FUR7.2_OpenSourceSoftware) |
 | Status of source disclosure | Useful reference, **not** a flashable alternative OS |
 
-The original Stremio bridge was reported working, but its controller navigation did not. An older handoff referred to a Stremio service on Danu port `11470`; that service was **not observed listening** at the last check. The earlier bridge source is still to be recovered.
+The October 26 MA.I.TV handoff confirms that the original TV accepted an **ephemeral Conjure launch of Stremio Web**. This was remote application control, **not a firmware replacement**. The controller/navigation defect remained unresolved. A historical local Stremio streaming service was **not observed listening** at the last check, and the earlier bridge source is still to be recovered. See the [sanitized original-project recovery summary](docs/LEGACY_RECOVERY.md).
 
 See [device details](docs/DEVICE.md) and the [technical plan](docs/TECHNICAL_PLAN.md). **No cross-model exploit or modified firmware is assumed compatible.**
 
@@ -118,6 +118,7 @@ See [device details](docs/DEVICE.md) and the [technical plan](docs/TECHNICAL_PLA
 
 - [x] Establish a separate MAITV workspace and Git repository
 - [x] Record the actual TV model and software identifiers
+- [x] Recover the original MA.I.TV handoff and distinguish Conjure control from firmware modification
 - [x] Build a keyboard-focus navigation prototype
 - [x] Add automated directional-input tests and CI
 - [x] Add privacy-conscious DOM key-event inspector with modern and legacy mappings
