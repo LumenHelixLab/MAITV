@@ -21,7 +21,7 @@
       <button class="nav-item" data-tab="search"><span aria-hidden="true">⌕</span> Search &amp; Apps <em>03</em></button>
       <button class="nav-item" data-tab="about"><span aria-hidden="true">⊞</span> About <em>04</em></button>
     </nav>
-    <div class="sidebar-bottom"><div class="privacy-dot">LOCAL-FIRST CONNECTION</div><p>No cloud control. No firmware changes.<br>Paired directly over Wi-Fi.</p><small>MAITV DESKTOP • PRIVATE ALPHA 0.6</small></div>
+    <div class="sidebar-bottom"><div class="privacy-dot">LOCAL-FIRST CONNECTION</div><p>No cloud control. No firmware changes.<br>Paired directly over Wi-Fi.</p><small>MAITV DESKTOP • 1.0.0 RC1</small></div>
   </aside>
 
   <main class="content">
@@ -86,7 +86,8 @@
         <div class="panel">
           <div class="panel-head"><div><span class="panel-kicker">STEP 01 / DISCOVER</span><h3>Find your Vizio</h3></div></div>
           <button class="wide-soft" id="discover">⌁ Find TVs on this network <span>SCAN</span></button>
-          <div id="found-devices" class="found-devices" aria-live="polite"><p>Discovery is optional. You can enter an address manually.</p></div>
+          <p class="scan-instruction" id="scan-instruction">After scanning, <strong>click your Vizio TV</strong> in the results below. Its IPv4 address will fill in automatically.</p>
+          <div id="found-devices" class="found-devices" aria-live="polite"><p>Run the scan, then select the correct television. Manual address entry is also supported.</p></div>
           <label class="field-label" for="tv-ip">TV IPv4 address</label>
           <input type="text" id="tv-ip" inputmode="decimal" placeholder="192.168.1.50" maxlength="15" spellcheck="false" autocomplete="off">
           <p class="small-copy">The TV address is under Settings → Network → Network Information. Confirm discovered devices before pairing.</p>
@@ -116,7 +117,7 @@
     </section>
 
     <section class="page hidden" id="page-about">
-      <div class="page-title"><div class="eyebrow">PROJECT STATUS</div><h2>Built for <span>control.</span></h2><p>MAITV Desktop 0.6.0 alpha — an independent Lumen Helix Solutions project.</p></div>
+      <div class="page-title"><div class="eyebrow">PROJECT STATUS</div><h2>Built for <span>control.</span></h2><p>MAITV Desktop 1.0.0 release candidate 1 — an independent Lumen Helix Solutions project. Physical-TV acceptance tests are pending.</p></div>
       <div class="panel about-panel"><h3>What this release does</h3><p>Native Windows desktop app for PIN pairing, device discovery, a responsive digital remote, Stremio Web launch, status and experimental text input.</p>
         <div class="about-stat"><span>Connection</span><strong>Local HTTPS / SmartCast</strong></div>
         <div class="about-stat"><span>Credential storage</span><strong>Windows protected encryption</strong></div>
@@ -128,6 +129,7 @@
     <div id="toasts" class="toast-area" aria-live="polite"></div>
   </main>
 </div>
+<script src="tooltips.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

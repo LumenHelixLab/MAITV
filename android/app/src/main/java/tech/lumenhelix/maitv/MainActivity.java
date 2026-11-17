@@ -322,7 +322,7 @@ public final class MainActivity extends Activity {
                 setStatus("Connected securely. Ready to control TV.");
             });
         });
-        root.addView(text("Private alpha · Pairing token encrypted in Android Keystore · No account required", 12, SUB, false));
+        root.addView(text("1.0 RC1 · Pairing token encrypted in Android Keystore · No account required", 12, SUB, false));
     }
 
     private void showRemote(SecureStore.SavedTv savedTv) {

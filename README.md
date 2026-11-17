@@ -8,11 +8,11 @@
   <a href="https://github.com/LumenHelixLab/MAITV/actions/workflows/tests.yml"><img alt="Input test workflow" src="https://github.com/LumenHelixLab/MAITV/actions/workflows/tests.yml/badge.svg" /></a>
   <a href="https://github.com/LumenHelixLab/MAITV/actions/workflows/android.yml"><img alt="Android alpha build CI" src="https://github.com/LumenHelixLab/MAITV/actions/workflows/android.yml/badge.svg" /></a>
   <a href="https://github.com/LumenHelixLab/MAITV/actions/workflows/desktop.yml"><img alt="Windows PC desktop build CI" src="https://github.com/LumenHelixLab/MAITV/actions/workflows/desktop.yml/badge.svg" /></a>
-  <img alt="Project stage: experimental" src="https://img.shields.io/badge/Stage-Experimental-7c3aed?style=flat-square" />
+  <img alt="Project stage: 1.0 release candidate" src="https://img.shields.io/badge/Stage-1.0%20RC1-7c3aed?style=flat-square" />
   <img alt="Node.js 18 or later" src="https://img.shields.io/badge/Node.js-18%2B-339933?logo=nodedotjs&amp;logoColor=white&amp;style=flat-square" />
   <img alt="Safety: no firmware writes" src="https://img.shields.io/badge/Firmware_Writes-None-00bcd4?style=flat-square" />
   <img alt="Target: Vizio V655-H9" src="https://img.shields.io/badge/Target-V655--H9-2563eb?style=flat-square" />
-  <img alt="Android remote: alpha" src="https://img.shields.io/badge/Android_remote-0.5_alpha-00d7e8?style=flat-square&logo=android&logoColor=white" />
+  <img alt="Android remote: 1.0 release candidate" src="https://img.shields.io/badge/Android_remote-1.0_RC1-00d7e8?style=flat-square&logo=android&logoColor=white" />
 </div>
 
 <div align="center">
@@ -38,6 +38,8 @@
 ---
 
 > [!IMPORTANT]
+> **MAITV 1.0.0-rc.1 is a coordinated release candidate, not a validated production release.** Windows desktop, Android and browser/TV diagnostic clients share one [versioning policy](VERSIONING.md), [changelog](CHANGELOG.md) and a strict [release gate](.github/workflows/release-gate.yml). Physical device acceptance, streaming search behavior, installer signing and compatibility remain incomplete. A public repository does not imply an open-source license; licensing is still to be selected.
+>
 > **Early-stage research prototype, not a TV firmware replacement.** The initial local browser demo and its keyboard-navigation unit tests work. Directional navigation on the Vizio-hosted MAITV test page has been **reported working by the user**. Precise keycodes, OK/Back behavior, direct Stremio Web navigation and any persistent on-TV deployment remain unverified. The browser-only lab does not pair with televisions; the separate Android remote uses explicit SmartCast PIN pairing. Neither component flashes or roots a TV.
 
 ## ✨ Why MAITV?
@@ -55,9 +57,9 @@ The name is spelled **M-A-I-T-V**. This repository is maintained under **LumenHe
 | **OS research** | Model/firmware inventory and matching open-source research reference | Compatibility audits before any device-specific experiment |
 | **Privacy** | In-memory sanitized input logs; localhost-only by default; no pairing tokens | Controlled on-TV testing and opt-in network analysis |
 
-## 📱 MAITV Android — private alpha
+## 📱 MAITV Android — release candidate
 
-**MAITV v0.5.0-alpha2** is the enhanced native Android companion remote under [android/](android/README.md). It talks **directly to the compatible Vizio's local SmartCast HTTPS API** using the PIN shown on your television—no Chromecast, Danu streaming server, phone-screen mirroring, third-party accounts or TV firmware modification. The pairing credential is encrypted on the phone using Android Keystore. The original Lumen Helix bulb artwork is included.
+**MAITV v1.0.0-rc.1** is the coordinated release candidate for the enhanced native Android companion remote under [android/](android/README.md). It talks **directly to the compatible Vizio's local SmartCast HTTPS API** using the PIN shown on your television—no Chromecast, Danu streaming server, phone-screen mirroring, third-party accounts or TV firmware modification. The pairing credential is encrypted on the phone using Android Keystore. The original Lumen Helix bulb artwork is included.
 
 - **Remote:** D-pad, OK, Back, Home, Menu, volume, mute, transport and input controls, plus a haptic swipe/tap gesture pad.
 - **Connect:** opt-in 12-second nearby Cast-device discovery with manual IP fallback and PIN pairing.
@@ -65,13 +67,13 @@ The name is spelled **M-A-I-T-V**. This repository is maintained under **LumenHe
 - **Phone keyboard:** send ASCII text from Android's keyboard or built-in dictation to a focused TV input field. **Stremio Web search may still reject input** until we validate/repair its Conjure text-field handling.
 - **Build verification:** Android SDK 35 build passed, APK debug signature verified, and all seven native Java unit tests passed. **Pairing and physical Android control have not yet been verified on a phone.**
 
-**Latest private alpha:** [MAITV Android APK v0.5.0-alpha2](https://github.com/LumenHelixLab/MAITV/releases/download/v0.5.0-alpha2/MAITV-Android-v0.5.0-alpha2-debug.apk) · [SHA-256 checksum](https://github.com/LumenHelixLab/MAITV/releases/download/v0.5.0-alpha2/MAITV-Android-v0.5.0-alpha2-debug.sha256). Sign into GitHub with authorized access to LumenHelixLab first; the repository and release are private.
+**Historical alpha (not the latest candidate):** [MAITV Android APK v0.5.0-alpha2](https://github.com/LumenHelixLab/MAITV/releases/download/v0.5.0-alpha2/MAITV-Android-v0.5.0-alpha2-debug.apk) · [SHA-256 checksum](https://github.com/LumenHelixLab/MAITV/releases/download/v0.5.0-alpha2/MAITV-Android-v0.5.0-alpha2-debug.sha256). Download historical builds only for comparison; use the coordinated release-candidate build for new tests.
 
 The alpha is debug-signed. Read the [Android setup and security notes](android/README.md) and [MVP release gates](docs/MVP_PACKAGING.md) before installing or distributing it.
 
 ## 🖥️ MAITV Desktop — Windows PC client
 
-**MAITV Desktop v0.6.0-alpha.1** is a true Windows application, not the old command-line hub. It uses the [Electron desktop client](desktop/README.md) with a full Lumen Helix-branded remote interface, local Wi-Fi discovery and pairing, one-tap Stremio Web launch, Windows-protected credentials and optional experimental PC-to-TV text entry.
+**MAITV Desktop v1.0.0-rc.1** is a true Windows application, not the old command-line hub. It uses the [Electron desktop client](desktop/README.md) with a full Lumen Helix-branded remote interface, local Wi-Fi discovery and pairing, one-tap Stremio Web launch, Windows-protected credentials and optional experimental PC-to-TV text entry.
 
 - **Desktop navigation:** on-screen D-pad, OK, Back, Home, playback and volume, plus arrow-key / Enter / Escape shortcuts.
 - **Privacy:** fixed local SmartCast API operations only, certificate pinned after PIN pairing, no cloud service.
@@ -79,7 +81,7 @@ The alpha is debug-signed. Read the [Android setup and security notes](android/R
 - **Search route experiment:** one-click Stremio search URL with URL-encoded PC input, plus separate SmartCast ASCII typing. The official route is documented in Stremio's code, but Vizio Conjure compatibility is unverified.
 - **Unresolved:** Stremio Web's native search keyboard, and Torrentio visibility on the TV.
 
-**Download the Windows preview:** [MAITV Desktop Setup](https://github.com/LumenHelixLab/MAITV/releases/download/desktop-v0.6.0-alpha1/MAITV-Desktop-Setup-0.6.0-alpha.1-x64.exe) · [Portable EXE](https://github.com/LumenHelixLab/MAITV/releases/download/desktop-v0.6.0-alpha1/MAITV-Desktop-Portable-0.6.0-alpha.1-x64.exe) · [Release notes & checksums](https://github.com/LumenHelixLab/MAITV/releases/tag/desktop-v0.6.0-alpha1). These are **unsigned private alpha** binaries; GitHub access is required.
+**Historical Windows alpha downloads (superseded by 1.0 RC1):** [MAITV Desktop Setup](https://github.com/LumenHelixLab/MAITV/releases/download/desktop-v0.6.0-alpha1/MAITV-Desktop-Setup-0.6.0-alpha.1-x64.exe) · [Portable EXE](https://github.com/LumenHelixLab/MAITV/releases/download/desktop-v0.6.0-alpha1/MAITV-Desktop-Portable-0.6.0-alpha.1-x64.exe) · [Release notes & checksums](https://github.com/LumenHelixLab/MAITV/releases/tag/desktop-v0.6.0-alpha1). These are **unsigned early alpha** binaries; they are retained for release history, not recommended for new installations.
 
 Read the [PC app setup and build instructions](desktop/README.md). The desktop installer is a **separate deliverable** from the Android remote.
 
@@ -96,7 +98,7 @@ npm run dev
 
 Open **http://127.0.0.1:4173** on the same computer.
 
-> The repository is **private** during development, so cloning requires authorized GitHub access. On the project workstation, the existing working copy is `D:\projects\MAITV`.
+> On Danu, the existing working copy is `D:\projects\MAITV`. For future installations, downloads and backups, use the `D:\` drive by default; see [VERSIONING.md](VERSIONING.md).
 
 | Key | Demo behavior |
 |:--:|:--|
@@ -196,13 +198,13 @@ See [device details](docs/DEVICE.md) and the [technical plan](docs/TECHNICAL_PLA
 
 [![MAITV star history chart](https://api.star-history.com/svg?repos=LumenHelixLab/MAITV&type=Date)](https://star-history.com/#LumenHelixLab/MAITV&Date)
 
-> **Privacy note:** MAITV is currently **private**. Public badge providers and Star History may show “not found”, missing data, or a blank chart until the repository is public. None of those missing metrics implies zero engagement. No artificial star, like, or activity counts are used.
+> **Statistics note:** Third-party badge providers and Star History may take time to populate after the repository becomes public. A missing or blank chart does not imply zero engagement. No artificial star, fork or activity counts are used.
 
 </details>
 
 ## 🤝 Get involved
 
-Opening up this project responsibly is a goal, not a completed step. Authorized collaborators can use the [issue forms](https://github.com/LumenHelixLab/MAITV/issues/new/choose) to submit reproducible key-mapping issues or focused improvement proposals. Read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a pull request.
+MAITV is preparing a publicly accessible 1.0 release candidate. Contributors can use the [issue forms](https://github.com/LumenHelixLab/MAITV/issues/new/choose) to submit reproducible key-mapping issues or focused improvement proposals. Read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a pull request.
 
 **Useful contributions:** Vizio keycode captures with private data removed; accessible focus indicators; deterministic controller tests; verified model/firmware documentation; reversible launcher patterns; and Stremio integration tests using lawful content.
 
@@ -211,6 +213,6 @@ Opening up this project responsibly is a goal, not a completed step. Authorized 
 
 ## 📣 Sharing and launch
 
-This README is **launch-ready in structure**, but the repository is not public yet. The [public-release checklist](docs/RELEASE_CHECKLIST.md) covers licensing, third-party source provenance, screenshots, device validation, security review, and the GitHub social-preview image.
+This repository publishes a **release candidate, not a stable hardware-validated 1.0**. The [public-release checklist](docs/RELEASE_CHECKLIST.md) covers licensing, third-party source provenance, screenshots, device validation, security review, and the GitHub social-preview image.
 
 <sub>MAITV is an independent research project. Not affiliated with, sponsored by, or endorsed by Vizio, Stremio, or Torrentio. Third-party names identify compatibility targets only. No bundled copyrighted streams or TV firmware.</sub>

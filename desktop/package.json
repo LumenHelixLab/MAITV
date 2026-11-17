@@ -1,7 +1,7 @@
 {
   "name": "maitv-desktop",
   "productName": "MAITV Desktop",
-  "version": "0.6.0-alpha.1",
+  "version": "1.0.0-rc.1",
   "description": "Lumen Helix local-first Vizio SmartCast desktop remote",
   "license": "UNLICENSED",
   "private": true,

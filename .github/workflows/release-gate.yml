@@ -1,0 +1,78 @@
+name: MAITV coordinated release gate
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  version-and-web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate shared version and release tag
+        run: npm run version:check
+      - name: Browser / TV lab tests
+        run: npm test
+
+  windows:
+    needs: version-and-web
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: desktop/package-lock.json
+      - name: Install locked dependencies
+        working-directory: desktop
+        run: npm ci --no-audit --no-fund
+      - name: Run desktop tests and JavaScript syntax checks
+        working-directory: desktop
+        run: |
+          npm test
+          node --check src/ui/app.js
+          node --check src/ui/tooltips.js
+      - name: Build portable and installer
+        working-directory: desktop
+        run: npm run dist:win
+      - uses: actions/upload-artifact@v4
+        with:
+          name: maitv-windows-release-candidate
+          path: |
+            desktop/dist/MAITV-Desktop-Setup-*.exe
+            desktop/dist/MAITV-Desktop-Portable-*.exe
+
+  android:
+    needs: version-and-web
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install Android SDK 35
+        run: |
+          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          echo "ANDROID_HOME=$SDK_ROOT" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$SDK_ROOT" >> "$GITHUB_ENV"
+          "$SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Test, lint and build Android
+        working-directory: android
+        run: bash ./gradlew --no-daemon :app:testDebugUnitTest :app:lintDebug :app:assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: maitv-android-release-candidate-debug
+          path: android/app/build/outputs/apk/debug/app-debug.apk

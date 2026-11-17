@@ -1,0 +1,8 @@
+{
+  "releaseTarget": "1.0.0",
+  "hardware": {
+    "web": { "passed": false, "date": "", "evidence": "" },
+    "windows": { "passed": false, "date": "", "evidence": "" },
+    "android": { "passed": false, "date": "", "evidence": "" }
+  }
+}

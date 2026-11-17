@@ -125,17 +125,27 @@ async function discover(){
     if(!devices.length){
       const p=document.createElement("p");
       p.textContent="No compatible discovery responses. Enter your TV address manually.";
-      box.appendChild(p);return;
+      box.appendChild(p);
+      el("scan-instruction").textContent="No TV was detected; check that your PC and TV share the same local network, or enter its IPv4 address manually.";
+      return;
     }
+    el("scan-instruction").textContent="Click your Vizio in the results below to fill the IPv4 address. Other Cast devices may also appear.";
     for(const device of devices) {
       const b=document.createElement("button");
       b.className="device-choice";
       b.type="button";
       b.textContent=device.name+" · "+device.host;
-      b.title="Select candidate device; verify it is your Vizio before pairing";
+      b.dataset.tooltip="Select "+device.name+" to copy "+device.host+" into the TV IPv4 field. Check that this is your Vizio before pairing.";
+      b.setAttribute("aria-pressed","false");
       b.onclick=()=>{
         el("tv-ip").value=device.host;
-        toast("Selected "+device.name+". Confirm it is your Vizio before pairing.");
+        box.querySelectorAll(".device-choice").forEach(choice=>{
+          const selected=choice===b;
+          choice.classList.toggle("selected",selected);
+          choice.setAttribute("aria-pressed",String(selected));
+        });
+        el("scan-instruction").textContent="Selected "+device.name+" ("+device.host+"). Confirm the TV, then select Start Pairing.";
+        toast("Selected "+device.name+". Its IPv4 address has been filled in.");
       };
       box.appendChild(b);
     }

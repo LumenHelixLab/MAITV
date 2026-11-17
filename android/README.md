@@ -1,8 +1,8 @@
-# MAITV for Android — v0.5.0-alpha2
+# MAITV for Android — v1.0.0-rc.1
 
 Native, local-first Vizio SmartCast remote for Android. **No TV app installation, casting, cloud account or running Danu server is required for the core remote.**
 
-This alpha targets the confirmed Vizio **V655-H9 (firmware 1.720.9.1-1)** and Android 8.0+ (API 26+). Other models and firmware may implement different keycodes. Verify on actual hardware.
+This release candidate targets the recorded Vizio **V655-H9 (firmware 1.720.9.1-1)** and Android 8.0+ (API 26+). Other models and firmware may implement different keycodes. Verify on actual hardware.
 
 ## Capabilities
 
@@ -19,7 +19,7 @@ This alpha targets the confirmed Vizio **V655-H9 (firmware 1.720.9.1-1)** and An
 | Stremio keyboard activation | **Not guaranteed**: Conjure may not accept ASCII input in Stremio Web |
 | Torrentio | Remains in the Stremio account, not bundled with MAITV |
 | Nearby TV discovery | Opt-in 12-second mDNS search for Cast-capable devices; user must confirm which device is their Vizio; manual IPv4 fallback |
-| Play Store release | Not ready; private debug-signed APK only |
+| Play Store release | Not ready; debug-signed release-candidate APK only |
 
 ## Pair from your Android phone
 
@@ -40,7 +40,7 @@ $env:ANDROID_HOME="$env:LOCALAPPDATA\Android\Sdk"
 .\gradlew.bat :app:testDebugUnitTest :app:assembleDebug
 ~~~
 
-**Private v0.5.0-alpha2 download:** https://github.com/LumenHelixLab/MAITV/releases/tag/v0.5.0-alpha2 (requires an authorized GitHub account). The debug APK also builds locally at app/build/outputs/apk/debug/app-debug.apk. Android Lint builds successfully; the remaining nonblocking warnings flag the deliberately device-scoped self-signed TLS trust manager (pin applied during pairing) and synchronous credential persistence (used off the UI thread to guarantee a saved pairing). Both need independent review before a production release. Install manually on an authorized Android phone after reviewing the installation warning. Do **not** distribute this debug-signed APK as a production release; validate it on the TV, complete the security review, and sign with the organization's release signing key first.
+**Current candidate: v1.0.0-rc.1** (tag and release pipeline coordinated with Windows and browser). The previous Android alpha remains at https://github.com/LumenHelixLab/MAITV/releases/tag/v0.5.0-alpha2. The candidate APK builds locally at `app/build/outputs/apk/debug/app-debug.apk`. Android Lint builds successfully; the remaining nonblocking warnings flag the deliberately device-scoped self-signed TLS trust manager (pin applied during pairing) and synchronous credential persistence (used off the UI thread to guarantee a saved pairing). Both need independent review before a production release. Install manually on an authorized Android phone after reviewing the installation warning. Do **not** distribute this debug-signed APK as a production release; validate it on the TV, complete the security review, and sign with the organization's release signing key first.
 
 ## Architecture and security
 

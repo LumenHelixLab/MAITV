@@ -1,4 +1,4 @@
-# MAITV Desktop for Windows — v0.6.0-alpha.1
+# MAITV Desktop for Windows — v1.0.0-rc.1
 
 A local-first desktop remote for SmartCast-era Vizio televisions, with the official **Lumen Helix Solutions** bulb branding, an interactive TV remote, one-tap Stremio Web, and optional text-entry experiments.
 
@@ -20,10 +20,11 @@ A local-first desktop remote for SmartCast-era Vizio televisions, with the offic
 | TV certificate binding | Pins SHA-256 of local self-signed certificate after initial pairing; mismatch blocks AUTH before HTTP transmission |
 | One-tap launch to Stremio Web | Fixed allowlisted Conjure URL, previously verified from Danu's prior helper |
 | D-pad, OK, Back, Home, volume, play/pause and input | Buttons + arrow/Enter/Escape shortcuts; hardware validation pending for new client |
-| Nearby TV discovery | Opt-in 6.5-second local mDNS scan for Google Cast services, manual IPv4 fallback |
+| Nearby TV discovery | Opt-in 6.5-second local mDNS scan; click your Vizio to fill its IPv4 field, with manual IPv4 fallback |
 | TV search route | Official Stremio Web hash-router search URL, encoded with PC query and opened through fixed-origin Conjure; **Vizio compatibility pending** |
 | PC-to-TV keyboard text | Separate ASCII CODESET 0 fallback, **experimental and unverified in Stremio Conjure** |
 | Open Stremio Web on PC | Launches official page in system browser, without giving MAITV access to Stremio credentials |
+| UI help | Hover and keyboard-focus tooltips describe remote actions, setup, discovery and experimental functions |
 | Always-on-top mode | Optional, user-initiated |
 | TV status | Shows standby/on state and active Conjure app when available |
 | Analytics/telemetry | None |
@@ -33,7 +34,7 @@ A local-first desktop remote for SmartCast-era Vizio televisions, with the offic
 
 1. Ensure the computer and television are connected to the same trusted local network.
 2. Open MAITV Desktop. Click **My Television** and optionally **Find TVs on this network**.
-3. Select the right Vizio from mDNS results (other Cast devices can appear), or enter its private LAN IP in the field.
+3. **Click your Vizio in the scan results** to fill its IPv4 field automatically (other Cast devices can appear). The selected entry is highlighted. Manual IPv4 entry remains available.
 4. Click **Start Pairing**. A 4-digit confirmation code should appear on the TV.
 5. Type that code into MAITV and click **Verify & Connect**. The token is encrypted with Windows' safeStorage and never appears in the renderer.
 6. Click **Open Stremio on TV**. Use the desktop remote, or keyboard shortcuts when the focus is outside a text field.
@@ -53,7 +54,7 @@ npm start
 npm run dist:win
 ~~~
 
-**Private pre-release:** [MAITV Desktop v0.6 Alpha 1](https://github.com/LumenHelixLab/MAITV/releases/tag/desktop-v0.6.0-alpha1) with separate Setup EXE, Portable EXE, a screenshot and SHA-256 checksum file. The packages are also built locally under desktop/dist and are **unsigned private alpha builds**. Windows SmartScreen may warn. Do not publish the installer broadly until independent testing, code-signing, third-party license review and a security audit are complete.
+**Current version: 1.0.0-rc.1 (release candidate, not stable).** Packaging produces a Windows Setup EXE and a portable EXE under `desktop/dist`. These are **unsigned test builds**; Windows SmartScreen may warn. Hardware pairing, code signing and an independent security review remain required before a stable release. Historical private alpha: [v0.6.0-alpha.1](https://github.com/LumenHelixLab/MAITV/releases/tag/desktop-v0.6.0-alpha1). For the coordinated release procedure, see [VERSIONING.md](../VERSIONING.md).
 
 ## Architecture
 
