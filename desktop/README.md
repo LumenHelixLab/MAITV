@@ -53,7 +53,7 @@ npm start
 npm run dist:win
 ~~~
 
-The packages are written under desktop/dist and are **unsigned private alpha builds**. Windows SmartScreen may warn. Do not publish the installer broadly until independent testing, code-signing, third-party license review and a security audit are complete.
+**Private pre-release:** [MAITV Desktop v0.6 Alpha 1](https://github.com/LumenHelixLab/MAITV/releases/tag/desktop-v0.6.0-alpha1) with separate Setup EXE, Portable EXE, a screenshot and SHA-256 checksum file. The packages are also built locally under desktop/dist and are **unsigned private alpha builds**. Windows SmartScreen may warn. Do not publish the installer broadly until independent testing, code-signing, third-party license review and a security audit are complete.
 
 ## Architecture
 

@@ -30,7 +30,8 @@ MAITV Desktop is a Windows 10/11 x64 PC client for controlling SmartCast-era Viz
 - Nine Node unit tests passed (validation, fixed commands, pairing, search URL, protected local credential handling).
 - Local fake-TV TLS certificate mismatch test passed: zero authenticated HTTP requests transmitted to an untrusted certificate.
 - Discovery on Danu's LAN found the Vizio V655-H9 by its broadcast name and private address.
-- Electron Builder produces separate Setup and Portable Windows executables.
+- Electron Builder produces separate Setup and Portable Windows executables, with both confirmed by SHA-256 hashes.
+- The first clean Windows GitHub Actions run passed: https://github.com/LumenHelixLab/MAITV/actions/runs/44151827095 (dependency install, unit tests, both Windows build targets, artifact upload).
 - The client only offers fixed allowlisted SmartCast operations on a private IPv4 TV address.
 
 ## Open / unverified

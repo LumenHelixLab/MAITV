@@ -21,7 +21,7 @@
 - New standalone Electron/Windows desktop client under desktop/: an actual remote UI, on-demand TV discovery, on-screen PIN pairing, status, fixed one-tap Stremio Web launch, remote keys, and two search-input experiments.
 - Current-user Windows safeStorage encryption protects pairing credentials; the Vizio self-signed TLS certificate is fingerprint-pinned before AUTH headers are transmitted.
 - Nine Node protocol/profile tests passed; local fake-TV TLS pinning test passed; read-only mDNS discovery identified the V655-H9 on Danu's home network.
-- An NSIS installer and portable Windows EXE are built as **unsigned private alpha** packages. New packaged app still needs real PC-to-TV pairing and navigation validation.
+- An NSIS installer and portable Windows EXE have been built, hash-verified, and published to the [private GitHub pre-release](https://github.com/LumenHelixLab/MAITV/releases/tag/desktop-v0.6.0-alpha1). They remain **unsigned private alpha** packages. New packaged app still needs real PC-to-TV pairing and navigation validation.
 - The old experimental hub/ command-line code is not included in the Windows package. Background service, multi-TV profiles, and signed production binaries are deferred.
 
 ## Packaging gates
@@ -42,7 +42,7 @@
 | Public repository and promotion | **Not approved** (keep private) |
 | MAITV Desktop Windows UI and fixed TV command bridge | Implemented; screenshot and dev-window smoke checked on Danu |
 | Windows protocol tests and fake-TV TLS rejection | 9/9 tests passing; wrong certificate prevented AUTH transmission |
-| Windows installer and portable binaries | Private alpha build completed locally; unsigned |
+| Windows installer and portable binaries | Private GitHub prerelease uploaded; local SHA-256 checks pass and independent Windows Actions build succeeded; unsigned |
 | New desktop PC client paired with actual Vizio | **Pending** |
 | Stremio URL-route search on Vizio | **Pending**; official route implemented but Conjure behavior unverified |
 

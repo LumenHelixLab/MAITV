@@ -7,6 +7,7 @@
 <div align="center">
   <a href="https://github.com/LumenHelixLab/MAITV/actions/workflows/tests.yml"><img alt="Input test workflow" src="https://github.com/LumenHelixLab/MAITV/actions/workflows/tests.yml/badge.svg" /></a>
   <a href="https://github.com/LumenHelixLab/MAITV/actions/workflows/android.yml"><img alt="Android alpha build CI" src="https://github.com/LumenHelixLab/MAITV/actions/workflows/android.yml/badge.svg" /></a>
+  <a href="https://github.com/LumenHelixLab/MAITV/actions/workflows/desktop.yml"><img alt="Windows PC desktop build CI" src="https://github.com/LumenHelixLab/MAITV/actions/workflows/desktop.yml/badge.svg" /></a>
   <img alt="Project stage: experimental" src="https://img.shields.io/badge/Stage-Experimental-7c3aed?style=flat-square" />
   <img alt="Node.js 18 or later" src="https://img.shields.io/badge/Node.js-18%2B-339933?logo=nodedotjs&amp;logoColor=white&amp;style=flat-square" />
   <img alt="Safety: no firmware writes" src="https://img.shields.io/badge/Firmware_Writes-None-00bcd4?style=flat-square" />
@@ -77,6 +78,8 @@ The alpha is debug-signed. Read the [Android setup and security notes](android/R
 - **Packaging:** NSIS installer and portable executable; **private alpha**, Windows binary code-signing and packaged-on-TV testing pending.
 - **Search route experiment:** one-click Stremio search URL with URL-encoded PC input, plus separate SmartCast ASCII typing. The official route is documented in Stremio's code, but Vizio Conjure compatibility is unverified.
 - **Unresolved:** Stremio Web's native search keyboard, and Torrentio visibility on the TV.
+
+**Download the Windows preview:** [MAITV Desktop Setup](https://github.com/LumenHelixLab/MAITV/releases/download/desktop-v0.6.0-alpha1/MAITV-Desktop-Setup-0.6.0-alpha.1-x64.exe) · [Portable EXE](https://github.com/LumenHelixLab/MAITV/releases/download/desktop-v0.6.0-alpha1/MAITV-Desktop-Portable-0.6.0-alpha.1-x64.exe) · [Release notes & checksums](https://github.com/LumenHelixLab/MAITV/releases/tag/desktop-v0.6.0-alpha1). These are **unsigned private alpha** binaries; GitHub access is required.
 
 Read the [PC app setup and build instructions](desktop/README.md). The desktop installer is a **separate deliverable** from the Android remote.
 
