@@ -3,7 +3,7 @@
 Thanks for helping improve reversible, testable, privacy-respecting Smart TV software.
 
 ## Before you start
-- The project is currently **private**; request collaboration access before sending contributions.
+- This repository is public and the software is MIT-licensed. Fork it and propose improvements through issues and pull requests. No advance access request is needed.
 - File a focused issue first for behavior-changing features.
 - Do not include firmware blobs, copyrighted media, extracted secrets, private pairing credentials or serial numbers.
 - Do not assume a fix observed on another Vizio/onn model applies to V655-H9.
@@ -22,4 +22,4 @@ Thanks for helping improve reversible, testable, privacy-respecting Smart TV sof
 - Confirm no secrets, pairing tokens, personal data or copyrighted firmware are included.
 
 Changes that affect any TV device must include an opt-in, rollback, and safety analysis.
-The repository is not licensed for redistribution yet; that decision is part of public-release review.
+By submitting a contribution, you agree that your original code and documentation contributions may be distributed under the project’s [MIT License](LICENSE). Preserve existing third-party copyright and license notices. Lumen Helix official brand artwork and marks are excluded from the software license; see [docs/BRANDING.md](docs/BRANDING.md).

@@ -38,7 +38,7 @@
 ---
 
 > [!IMPORTANT]
-> **MAITV 1.0.0-rc.1 is a coordinated release candidate, not a validated production release.** Windows desktop, Android and browser/TV diagnostic clients share one [versioning policy](VERSIONING.md), [changelog](CHANGELOG.md) and a strict [release gate](.github/workflows/release-gate.yml). Physical device acceptance, streaming search behavior, installer signing and compatibility remain incomplete. A public repository does not imply an open-source license; licensing is still to be selected.
+> **MAITV 1.0.0-rc.1 is a coordinated release candidate, not a validated production release.** Windows desktop, Android and browser/TV diagnostic clients share one [versioning policy](VERSIONING.md), [changelog](CHANGELOG.md) and a strict [release gate](.github/workflows/release-gate.yml). Physical device acceptance, streaming search behavior, installer signing and compatibility remain incomplete. The software source code is available under the [MIT License](LICENSE); official Lumen Helix branding and third-party assets remain subject to their respective rights as described in [brand-source notes](docs/BRANDING.md).
 >
 > **Early-stage research prototype, not a TV firmware replacement.** The initial local browser demo and its keyboard-navigation unit tests work. Directional navigation on the Vizio-hosted MAITV test page has been **reported working by the user**. Precise keycodes, OK/Back behavior, direct Stremio Web navigation and any persistent on-TV deployment remain unverified. The browser-only lab does not pair with televisions; the separate Android remote uses explicit SmartCast PIN pairing. Neither component flashes or roots a TV.
 
@@ -204,12 +204,16 @@ See [device details](docs/DEVICE.md) and the [technical plan](docs/TECHNICAL_PLA
 
 ## 🤝 Get involved
 
-MAITV is preparing a publicly accessible 1.0 release candidate. Contributors can use the [issue forms](https://github.com/LumenHelixLab/MAITV/issues/new/choose) to submit reproducible key-mapping issues or focused improvement proposals. Read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a pull request.
+MAITV is publicly available under the MIT software license, with a release candidate still undergoing physical-device validation. Contributors can use the [issue forms](https://github.com/LumenHelixLab/MAITV/issues/new/choose) to submit reproducible key-mapping issues or focused improvement proposals. Read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a pull request.
 
 **Useful contributions:** Vizio keycode captures with private data removed; accessible focus indicators; deterministic controller tests; verified model/firmware documentation; reversible launcher patterns; and Stremio integration tests using lawful content.
 
 > [!CAUTION]
 > Never share pairing tokens, authentication secrets, serial numbers, private media libraries, or privileged device logs in an issue. Follow [SECURITY.md](SECURITY.md). Do not flash unverified firmware.
+
+## 📜 License
+
+MAITV software source code, tests, and original documentation are licensed under the [MIT License](LICENSE), copyright © 2026 Lumen Helix Solutions. You may use, modify, redistribute and commercialize the MIT-licensed software provided you retain the copyright and license notice. Official Lumen Helix name, bulb logo, and related branded artwork are not granted under this code license; see [docs/BRANDING.md](docs/BRANDING.md). Third-party dependencies remain under their own licenses. This release candidate is **not** a hardware-validated stable release.
 
 ## 📣 Sharing and launch
 
