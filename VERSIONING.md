@@ -37,4 +37,4 @@ For **future** MAITV installations, source checkouts, downloads, local backups, 
 6. For stable releases only, require satisfactory physical-TV compatibility, installer/signing review, security review, updated docs, and successful tag-triggered release gate.
 7. Tag exactly `vX.Y.Z` and publish checksums and release notes. Never rewrite published tags.
 
-The repo's public visibility does not itself grant a copyright license. Any open-source license should be selected explicitly and checked against included third-party code/assets before publication.
+MAITV software source code and original documentation are licensed under the repository's [MIT License](LICENSE). Official Lumen Helix brand assets and third-party code/assets have separate rights; consult [docs/BRANDING.md](docs/BRANDING.md) and review dependency licenses before distribution.
