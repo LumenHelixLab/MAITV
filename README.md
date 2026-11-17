@@ -1,5 +1,7 @@
 <div align="center">
-  <img src="assets/lumen-helix-maitv-wordmark.svg" alt="Lumen Helix Solutions × MAITV — Make the screen yours. Neon bulb-and-helix wordmark with a television and D-pad." width="100%" />
+  <a href="https://lumenhelix.com"><img src="assets/lumen-helix-logo-official.png" alt="Original Lumen Helix Solutions bulb logo, sourced directly from the company website" width="102" /></a>
+  <br />
+  <img src="assets/lumen-helix-maitv-official.svg" alt="LUMENhelix solutions — MAITV. Original company bulb image with site-matched wordmark colors and MAITV lettering." width="100%" />
 </div>
 
 <div align="center">

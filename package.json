@@ -6,7 +6,8 @@
   "description": "Non-invasive MAITV launcher and controller-navigation prototype for Vizio V655-H9",
   "scripts": {
     "dev": "node tools/serve.mjs",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "brand:build": "node tools/build-brand.mjs"
   },
   "engines": {
     "node": ">=18"

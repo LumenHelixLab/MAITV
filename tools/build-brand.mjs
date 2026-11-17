@@ -1,0 +1,14 @@
+import { readFile, writeFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import { resolve, dirname } from "node:path";
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const original = await readFile(resolve(root, "assets/lumen-helix-logo-official.png"));
+const pngSignature = Buffer.from([0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a]);
+if (!original.subarray(0,8).equals(pngSignature)) throw new Error("Brand source is not a valid PNG");
+const template = await readFile(resolve(root, "assets/lumen-helix-maitv-official.template.svg"), "utf8");
+const placeholder = "__OFFICIAL_BULB_DATA_URI__";
+if (template.split(placeholder).length !== 2) throw new Error("Expected exactly one image placeholder");
+const embedded = "data:image/png;base64," + original.toString("base64");
+const output = template.replace(placeholder, embedded);
+await writeFile(resolve(root, "assets/lumen-helix-maitv-official.svg"), output, "utf8");
+console.log("Built MAITV website-brand banner with unchanged original bulb PNG (" + original.byteLength + " bytes).");

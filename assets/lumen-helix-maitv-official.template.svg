@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="420" viewBox="0 0 1440 420" role="img" aria-labelledby="title desc">
+<title id="title">LUMENhelix solutions | MAITV</title>
+<desc id="desc">MAITV banner incorporating the exact Lumen Helix website bulb PNG and its original brand word styling: cyan LUMEN, white helix, and green solutions.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#050912"/><stop offset=".55" stop-color="#0a1531"/><stop offset="1" stop-color="#161136"/></linearGradient>
+  <linearGradient id="maitv" x1="0" x2="1"><stop stop-color="#e9f9ff"/><stop offset=".38" stop-color="#20dffc"/><stop offset=".76" stop-color="#4995ff"/><stop offset="1" stop-color="#ca81fc"/></linearGradient>
+  <radialGradient id="glow"><stop stop-color="#643bb0" stop-opacity=".40"/><stop offset="1" stop-color="#5638b0" stop-opacity="0"/></radialGradient>
+  <pattern id="mesh" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#355879" stroke-width=".6" opacity=".25"/></pattern>
+</defs>
+<rect width="1440" height="420" rx="20" fill="url(#bg)"/>
+<rect width="1440" height="420" rx="20" fill="url(#mesh)" opacity=".8"/>
+<ellipse cx="1220" cy="200" rx="370" ry="230" fill="url(#glow)"/>
+<!-- Original Lumen Helix bulb asset, embedded pixel-for-pixel from https://lumenhelix.com/images/logo-bulb.png?v=2 -->
+<image x="66" y="55" width="246" height="305" preserveAspectRatio="xMidYMid meet" href="__OFFICIAL_BULB_DATA_URI__"/>
+<g font-family="Arial, Helvetica, sans-serif" font-weight="700" letter-spacing="-2">
+ <text x="350" y="137" font-size="75"><tspan fill="#00eaff">LUMEN</tspan><tspan fill="#f8fbff">helix</tspan></text>
+</g>
+<text x="355" y="176" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="400" letter-spacing="8" fill="#71ffbc">solutions</text>
+<path d="M348 200H1180" stroke="#274867" stroke-width="3"/>
+<text x="340" y="310" font-family="Arial, Helvetica, sans-serif" font-size="106" font-weight="800" letter-spacing="12" fill="url(#maitv)">MAITV</text>
+<text x="353" y="353" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="4" fill="#b9d3ec">MAKE THE SCREEN YOURS</text>
+<path d="M35 390H1405" stroke="#285279" stroke-width="2" opacity=".7"/>
+<text x="43" y="410" font-family="Arial, Helvetica, sans-serif" font-size="14" letter-spacing="4" fill="#a8c6e6">MEDIA  ·  RESEARCH  ·  DEVELOPMENT  ·  COMMUNITY</text>
+<g transform="translate(1242 112)">
+<rect width="137" height="137" rx="24" fill="#0c2041" stroke="#22d9ef" stroke-width="5"/>
+<path d="M31 100V42L69 71L107 42V100H93V70L69 91L45 70V100Z" fill="url(#maitv)"/>
+<circle cx="70" cy="112" r="6" fill="#39ffdb"/>
+</g>
+</svg>
