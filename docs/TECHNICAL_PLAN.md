@@ -9,12 +9,13 @@ Provide reliable home-screen control and app integration for Vizio V655-H9 while
 - Check Danu's port 11470 and process ownership before deciding whether to restart any service.
 - Document exact TV WebView/launcher runtime and input event surface.
 
-## Phase 1 — Controller/focus mapping (this prototype)
+## Phase 1 — Controller/focus mapping (implemented in the local prototype)
 - Normalize arrow/select/back keyboard input.
 - Apply deterministic directional focus movement on a 2-column grid.
 - Do not intercept text fields or unrelated browser shortcuts.
-- Provide focus indication and human-readable event diagnostics.
-- Unit test input mappings and focus edge cases.
+- Provide focus indication, last-30-event diagnostic log, and sanitized local report. (Implemented; awaiting physical-TV validation)
+- Unit test input mappings and focus edge cases. (Implemented)
+- Add a localhost HTTP smoke test and keep LAN mode opt-in. (Implemented)
 
 ## Phase 2 — TV compatibility
 - Compare actual Vizio key event codes with documented mappings.
@@ -33,4 +34,4 @@ Provide reliable home-screen control and app integration for Vizio V655-H9 while
 - Add diagnostics and network privacy analysis only after compatibility checks.
 
 ## Current acceptance gate
-`npm test` must pass. Browser keyboard navigation must pass before any device-side test. The local UI is a prototype, **not** a TV installation.
+`npm test` must pass (seven tests in v0.2). Browser keyboard event diagnostics must be reviewed before any device-side integration. The local UI is a prototype, **not** a TV installation.

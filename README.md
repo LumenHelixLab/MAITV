@@ -24,6 +24,7 @@
   <a href="#-status--roadmap"><strong>Roadmap</strong></a> ·
   <a href="#-get-involved"><strong>Contribute</strong></a> ·
   <a href="#-github-stars--activity"><strong>Star history</strong></a> ·
+  <a href="docs/REMOTE_DIAGNOSTICS.md"><strong>Remote diagnostics</strong></a> ·
   <a href="docs/DEVICE.md"><strong>Device notes</strong></a>
 </div>
 
@@ -40,12 +41,12 @@ The name is spelled **M-A-I-T-V**. This repository is maintained under **LumenHe
 
 | 🧭 Focus | 🛠️ What exists now | 🚧 What comes next |
 |:--|:--|:--|
-| **Remote navigation** | Keyboard key normalization, deterministic 2-column focus grid, select/back behavior, automated tests | Capture and test actual Vizio remote events |
+| **Remote navigation** | On-screen keyboard-event inspector, legacy keyCode fallback, focus grid, select/back and automated tests | Capture and validate physical Vizio remote events |
 | **Custom home** | Responsive four-tile browser mockup with a visible focus indicator | An optional, reversible launcher adapter |
 | **Stremio integration** | Recovery notes for a previously working bridge (source not yet located) | Recover source, verify transport and navigation |
 | **Add-ons** | Stremio/Torrentio integration plan | Test account synchronization and playback separately |
 | **OS research** | Model/firmware inventory and matching open-source research reference | Compatibility audits before any device-specific experiment |
-| **Privacy** | Localhost-only dev server; no pairing tokens | Opt-in diagnostics and traffic analysis |
+| **Privacy** | In-memory sanitized input logs; localhost-only by default; no pairing tokens | Controlled on-TV testing and opt-in network analysis |
 
 ## 🕹️ Quick start
 
@@ -68,7 +69,9 @@ Open **http://127.0.0.1:4173** on the same computer.
 | Enter | Select the highlighted tile |
 | Escape / Backspace | Exercise the Back action without leaving the page |
 
-The example starts a **localhost-only** development server. It makes **no connection to the Vizio** and does not install anything on the TV.
+The demo includes an **on-screen remote-event inspector**: it shows which DOM key events the browser receives, labels unknown mappings and provides a locally copyable redacted report. Use it to diagnose input rather than guessing at proprietary keycodes.
+
+The example starts a **localhost-only** development server. It makes **no connection to the Vizio** and does not install anything on the TV. An **opt-in LAN preview** mode is documented in [remote diagnostics](docs/REMOTE_DIAGNOSTICS.md); enabling it requires a deliberate environment setting and an authorized app/browser to open the page on TV.
 
 ## 🧩 How it is structured
 
@@ -78,10 +81,11 @@ MAITV/
 ├── src/
 │   ├── index.html          Local interactive test UI
 │   ├── styles.css          High-contrast focus styling
-│   ├── remote.mjs          Pure keyboard-to-action mapping
-│   └── main.mjs            Focus movement and action handler
-├── tests/remote.test.mjs   Navigation and input tests
-├── tools/serve.mjs         Localhost-only development server
+│   ├── remote.mjs          Modern and legacy event normalization
+│   └── main.mjs            Focus, key-event inspector and local report
+├── tests/remote.test.mjs   Navigation and diagnostic tests
+├── tests/server.test.mjs   Local HTTP smoke test
+├── tools/serve.mjs         Localhost default; opt-in LAN preview
 ├── docs/                   Device notes, technical plan, release checklist
 ├── .github/                CI and contribution templates
 └── README.md
@@ -116,6 +120,8 @@ See [device details](docs/DEVICE.md) and the [technical plan](docs/TECHNICAL_PLA
 - [x] Record the actual TV model and software identifiers
 - [x] Build a keyboard-focus navigation prototype
 - [x] Add automated directional-input tests and CI
+- [x] Add privacy-conscious DOM key-event inspector with modern and legacy mappings
+- [x] Document opt-in LAN preview without enabling network access by default
 - [ ] Recover the previous MAITV/Stremio bridge source
 - [ ] Identify real remote key events on the V655-H9
 - [ ] Validate focus movement, OK and Back on target hardware
@@ -123,7 +129,7 @@ See [device details](docs/DEVICE.md) and the [technical plan](docs/TECHNICAL_PLA
 - [ ] Prototype an optional launcher with a documented rollback path
 - [ ] Complete a security/licensing review before any public release
 
-**Milestone 0.1: local remote-input lab.** Not a production install.
+**Milestone 0.2: remote-event diagnostic lab.** Seven automated input, navigation and local HTTP smoke tests pass on Danu. Actual Vizio WebView key events and on-TV installation remain unverified. This is not a production install.
 
 ## ⭐ GitHub stars & activity
 

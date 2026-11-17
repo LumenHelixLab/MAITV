@@ -4,28 +4,53 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <title>MAITV • Input Lab</title>
+  <title>MAITV • Remote Input Lab</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <main class="shell">
     <header>
-      <p class="eyebrow">Lumen Helix Solutions / MAITV</p>
-      <h1>MAITV Input Lab</h1>
-      <p class="intro">Non-invasive controller navigation prototype for Vizio V655-H9.</p>
+      <p class="eyebrow">LUMEN<span>helix</span> solutions / MAITV</p>
+      <h1>MAI<span>TV</span> <small>Remote Input Lab</small></h1>
+      <p class="intro">Vizio V655-H9 research · local browser prototype · no TV connection or firmware writes.</p>
     </header>
+
     <section class="tiles" aria-label="MAITV test menu" id="menu">
-      <button type="button" class="tile" data-maitv-item data-panel="bridge"><strong>Bridge</strong><span>Recovery status</span></button>
-      <button type="button" class="tile" data-maitv-item data-panel="remote"><strong>Remote</strong><span>D-pad, OK and Back</span></button>
-      <button type="button" class="tile" data-maitv-item data-panel="addons"><strong>Add-ons</strong><span>Stremio and Torrentio</span></button>
-      <button type="button" class="tile" data-maitv-item data-panel="safety"><strong>Safety</strong><span>No firmware changes</span></button>
+      <button type="button" class="tile" data-maitv-item data-panel="bridge"><strong>01 · Bridge</strong><span>Recovery status</span></button>
+      <button type="button" class="tile" data-maitv-item data-panel="remote"><strong>02 · Remote</strong><span>Directional focus and key events</span></button>
+      <button type="button" class="tile" data-maitv-item data-panel="addons"><strong>03 · Add-ons</strong><span>Stremio and Torrentio</span></button>
+      <button type="button" class="tile" data-maitv-item data-panel="safety"><strong>04 · Safety</strong><span>No firmware changes</span></button>
     </section>
+
     <section class="status" aria-live="polite">
-      <h2 id="panel-title">Keyboard input test</h2>
-      <p id="panel-text">Use arrow keys, Enter and Escape/Backspace. On-TV remote input has not been verified.</p>
+      <h2 id="panel-title">Input capture ready</h2>
+      <p id="panel-text">Use arrow keys, Enter and Escape/Backspace. If testing through a Vizio webview, press the TV remote's directional, OK and Back keys and inspect the events below.</p>
       <p class="event"><span>Last event:</span> <output id="last-event">None</output></p>
     </section>
-    <footer>Local-only prototype • no device pairing • no firmware write</footer>
+
+    <section class="inspector" aria-labelledby="inspector-title">
+      <div class="inspector-header">
+        <div>
+          <p class="eyebrow">Developer console</p>
+          <h2 id="inspector-title">Remote event inspector <small id="event-count">0 events</small></h2>
+        </div>
+        <div class="actions">
+          <button type="button" id="copy-events" data-inspector-control>Copy report</button>
+          <button type="button" id="clear-events" data-inspector-control>Clear</button>
+        </div>
+      </div>
+      <p class="subtext">Records the last 30 browser keydown/keyup events in this page only. Printable characters are masked. Nothing is uploaded or sent to the TV.</p>
+      <ol id="event-list" aria-live="off" aria-label="Recent keyboard events">
+        <li class="placeholder">No key events recorded.</li>
+      </ol>
+      <details>
+        <summary>Inspect sanitized JSON report</summary>
+        <label for="report">Copyable browser-event diagnostics</label>
+        <textarea id="report" rows="9" spellcheck="false" readonly></textarea>
+      </details>
+      <p id="copy-status" class="subtext" role="status">The remote profile is not yet validated on physical Vizio hardware.</p>
+    </section>
+    <footer>MAITV v0.2 input lab · Local-only by default · No pairing tokens · No firmware modification</footer>
   </main>
   <script type="module" src="./main.mjs"></script>
 </body>
