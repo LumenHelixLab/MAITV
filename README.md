@@ -26,13 +26,14 @@
   <a href="#-github-stars--activity"><strong>Star history</strong></a> ·
   <a href="docs/REMOTE_DIAGNOSTICS.md"><strong>Remote diagnostics</strong></a> ·
   <a href="docs/TV_TEST_SESSION.md"><strong>On-TV test</strong></a> ·
+  <a href="docs/STREMIO_TORRENTIO.md"><strong>Torrentio setup</strong></a> ·
   <a href="docs/DEVICE.md"><strong>Device notes</strong></a>
 </div>
 
 ---
 
 > [!IMPORTANT]
-> **Early-stage research prototype, not a TV firmware replacement.** The initial local browser demo and its keyboard-navigation unit tests work. Direct Vizio remote support, the original Stremio bridge, and on-TV deployment have **not** been verified in this repository. MAITV does not flash, root, or pair with any television.
+> **Early-stage research prototype, not a TV firmware replacement.** The initial local browser demo and its keyboard-navigation unit tests work. Directional navigation on the Vizio-hosted MAITV test page has been **reported working by the user**. Precise keycodes, OK/Back behavior, direct Stremio Web navigation and any persistent on-TV deployment remain unverified. MAITV does not flash, root, or pair with any television.
 
 ## ✨ Why MAITV?
 
@@ -42,10 +43,10 @@ The name is spelled **M-A-I-T-V**. This repository is maintained under **LumenHe
 
 | 🧭 Focus | 🛠️ What exists now | 🚧 What comes next |
 |:--|:--|:--|
-| **Remote navigation** | Browser key-event inspector, opt-in Danu relay, focus grid, select/back; eight automated tests | Confirm physical Vizio remote events and integrate with Stremio |
+| **Remote navigation** | D-pad navigation confirmed on TV by user; keyboard inspector, opt-in Danu relay and eight automated tests | Capture actual keycodes and adapt Stremio Web focus |
 | **Custom home** | Responsive four-tile browser mockup with a visible focus indicator | An optional, reversible launcher adapter |
 | **Stremio integration** | Original MA.I.TV handoff and Conjure launch findings recovered; bridge source still missing | Recover source, verify transport and navigation |
-| **Add-ons** | Stremio/Torrentio integration plan | Test account synchronization and playback separately |
+| **Add-ons** | Stremio app restarted on Danu; Torrentio restore guide prepared and setup page opened | Verify prior Stremio account installation; sync Torrentio and test playback |
 | **OS research** | Model/firmware inventory and matching open-source research reference | Compatibility audits before any device-specific experiment |
 | **Privacy** | In-memory sanitized input logs; localhost-only by default; no pairing tokens | Controlled on-TV testing and opt-in network analysis |
 
@@ -97,7 +98,7 @@ flowchart LR
     A[Keyboard test input] --> B[Normalize key]
     B --> C[Directional focus]
     C --> D[Selection / Back]
-    E[Actual TV remote - future] -.requires hardware validation.-> B
+    E[Physical TV D-pad - user verified] -.keycodes not yet captured.-> B
     F[Recovered Stremio bridge - future] -.integration.-> D
 ```
 
@@ -127,13 +128,15 @@ See [device details](docs/DEVICE.md) and the [technical plan](docs/TECHNICAL_PLA
 - [x] Launch MAITV through Conjure; confirm the TV requested the page and configuration
 - [x] Add temporary, source-restricted, in-memory key-event relay
 - [ ] Recover the previous MAITV/Stremio bridge source
-- [ ] Observe actual remote-button events on the V655-H9 (physical test still pending)
-- [ ] Validate focus movement, OK and Back on target hardware
-- [ ] Integrate Stremio add-on configuration and test playback
+- [x] Confirm physical Vizio D-pad navigation in the MAITV test page (user-reported)
+- [ ] Capture individual Vizio key events/keycodes during a fresh diagnostic session
+- [ ] Validate OK and Back behavior inside Stremio Web
+- [x] Document restoring previously configured Torrentio in the existing Stremio account
+- [ ] Verify Torrentio's account installation/sync on the TV and test permitted playback
 - [ ] Prototype an optional launcher with a documented rollback path
 - [ ] Complete a security/licensing review before any public release
 
-**Milestone 0.3: controlled Conjure input test.** Eight automated input, navigation, capture, and HTTP smoke tests pass on Danu. The Vizio accepted the ephemeral test-page launch and loaded its browser code; physical remote-button delivery still requires confirmation. This is not a production install.
+**Milestone 0.3: controlled Conjure input test.** Eight automated input, navigation, capture, and HTTP smoke tests pass on Danu. The Vizio accepted the ephemeral test-page launch and the user confirmed directional navigation works; raw event codes and Stremio Web control remain unverified. This is not a production install.
 
 ## ⭐ GitHub stars & activity
 

@@ -62,6 +62,7 @@ After a controlled test, provide only sanitized key names and numeric keycodes (
 - [x] Provide opt-in LAN preview without enabling it automatically.
 - [ ] Recover prior Stremio bridge source on the OmniBook (currently offline).
 - [x] Verify an authorized temporary Conjure page launch and browser configuration request.
-- [ ] Verify physical Vizio V655-H9 button events via the on-TV diagnostic page.
+- [x] User reports physical Vizio V655-H9 D-pad navigation works on the MAITV page.
+- [ ] Capture exact key events/keycodes and test OK/Back in Stremio Web.
 - [ ] Transfer confirmed mappings to the bridge and test Stremio navigation.
 - [ ] Verify Torrentio add-on setup and lawful-content playback separately.

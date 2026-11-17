@@ -19,7 +19,7 @@ fetch("/_maitv/config", { cache: "no-store" })
 const panels = {
   bridge: ["Bridge recovery", "Earlier Stremio bridge reportedly worked; its source has not yet been recovered. The historical Danu server on port 11470 is not confirmed active."],
   remote: ["Remote diagnostics", "Press D-pad, OK and Back here to discover which DOM events are delivered. Unknown events remain visible in the local event log."],
-  addons: ["Stremio add-ons", "Torrentio is a Stremio add-on, not an Android app. Add-on synchronization and playback are separate integration tasks."],
+  addons: ["Stremio + Torrentio", "Torrentio must be present in the Stremio account used on both Danu and the TV. Check My Add-ons before reinstalling. Configure it on Danu, then reopen Stremio Web on the TV; MAITV does not store any account keys."],
   safety: ["Safety policy", "No firmware writes, TV pairing, or privileged device APIs. In explicitly enabled on-TV test sessions, sanitized key events are sent only to Danu and retained in memory until the test server stops."]
 };
 const diagnostics = [];

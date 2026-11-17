@@ -5,7 +5,7 @@
 - Historic SmartCast pairing was reused by an existing Danu-local control helper; no credential was added to MAITV.
 - A **temporary** Conjure launch (namespace 4, app ID 17) returned HTTP 200 / SUCCESS.
 - The local MAITV server recorded a TV page request and the page's configuration request.
-- **Physical remote events were not yet verified at the time of this note.** A successful page load is not verified D-pad control.
+- **User verification, follow-up:** The user subsequently confirmed that the Vizio remote's directional buttons worked in the MAITV test page. This is a meaningful hardware/UI validation, but individual event names/keycodes were **not** captured persistently: the 15-minute in-memory diagnostic session expired before readback. OK, Back and Stremio Web navigation remain unverified.
 - Installed firmware, TV apps and permanent boot settings were not changed.
 - No new Windows Firewall rule was installed; the attempt was denied, and existing Node access was used.
 
@@ -40,7 +40,7 @@ To finish, press the TV's Home button and stop the development server. No softwa
 
 ## Acceptance gate
 1. TV launches the web page and requests its configuration.
-2. Physical remote keys cause keydown or keyup events to reach Danu.
+2. User confirms physical D-pad navigation on the test page; actual browser keydown/keyup records remain to be captured.
 3. Verified keycodes map to D-pad, OK and Back correctly.
 4. Focus traverses all four tiles, or a reproducible failure is documented.
 5. Only then integrate the verified adapter with Stremio Web.
