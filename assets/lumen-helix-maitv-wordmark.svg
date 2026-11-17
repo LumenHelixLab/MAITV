@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="410" viewBox="0 0 1440 410" role="img" aria-labelledby="title desc">
+<title id="title">Lumen Helix Solutions — MAITV</title>
+<desc id="desc">Lumen Helix gold lightbulb and helix emblem beside the MAITV neon cyan and violet wordmark and a Smart TV remote-control concept, on a dark midnight-blue backdrop.</desc>
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#030b1a"/><stop offset=".46" stop-color="#0a1639"/><stop offset=".78" stop-color="#13113a"/><stop offset="1" stop-color="#080f23"/>
+  </linearGradient>
+  <linearGradient id="neon" x1="0" x2="1">
+    <stop stop-color="#e9faff"/><stop offset=".48" stop-color="#00e7fb"/><stop offset=".8" stop-color="#4b96ff"/><stop offset="1" stop-color="#de83fd"/>
+  </linearGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#fff4c2"/><stop offset=".46" stop-color="#ffba3d"/><stop offset=".76" stop-color="#d16d10"/><stop offset="1" stop-color="#0ee5f2"/>
+  </linearGradient>
+  <linearGradient id="glass" x1="0" y1="0" x2=".8" y2="1">
+    <stop stop-color="#091c43"/><stop offset=".65" stop-color="#0b1634"/><stop offset="1" stop-color="#1a1447"/>
+  </linearGradient>
+  <radialGradient id="nebula">
+    <stop stop-color="#6b28e5" stop-opacity=".40"/><stop offset="1" stop-color="#6b28e5" stop-opacity="0"/>
+  </radialGradient>
+  <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+    <path d="M32 0H0V32" fill="none" stroke="#537da8" stroke-width=".6" opacity=".22"/>
+  </pattern>
+  <filter id="halo" x="-100%" y="-100%" width="300%" height="300%">
+    <feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="outerHalo" x="-70%" y="-70%" width="240%" height="240%">
+    <feGaussianBlur stdDeviation="14"/>
+  </filter>
+</defs>
+<rect width="1440" height="410" rx="22" fill="url(#sky)"/>
+<rect width="1440" height="410" rx="22" fill="url(#grid)" opacity=".48"/>
+<ellipse cx="1205" cy="100" rx="310" ry="205" fill="url(#nebula)"/>
+<circle cx="1226" cy="57" r="2" fill="#a5defe"/><circle cx="1132" cy="85" r="2" fill="#e6a8ff"/><circle cx="1394" cy="288" r="2" fill="#7df0fe"/><circle cx="1025" cy="42" r="2" fill="#e3e6ff"/>
+<path d="M0 361 Q610 294 1440 369" fill="none" stroke="#1b7dbf" stroke-width="2" opacity=".40"/>
+<path d="M40 330H880" stroke="url(#neon)" stroke-width="3" opacity=".85"/>
+<!-- Gold filament / helix lightbulb -->
+<g transform="translate(86 62)">
+  <ellipse cx="83" cy="89" rx="70" ry="75" fill="#ffb82a" opacity=".10" filter="url(#outerHalo)"/>
+  <path d="M42 118C29 103 20 82 25 62 32 22 68 8 94 13c29 5 49 29 49 57 0 25-14 40-29 55-7 7-9 16-9 27H62c0-13-7-24-20-34Z" fill="#081729" stroke="url(#gold)" stroke-width="5"/>
+  <path d="M69 131C55 107 65 98 86 87c26-14 30-26 10-35-30-14-50 5-27 22 8 6 21 11 32 18 18 12 15 24 3 39" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M59 64c23 20 32 28 56 7" fill="none" stroke="#7bedff" stroke-width="3" stroke-linecap="round"/>
+  <path d="M63 161h42M65 173h38M72 184h25" stroke="#44d9ff" stroke-width="6" stroke-linecap="round"/>
+  <path d="M51 45l-8-14M115 33l10-15M80 6V0M17 92H3M154 91h13" stroke="#f8b43c" stroke-width="4" stroke-linecap="round"/>
+</g>
+<!-- Lumen Helix wordmark -->
+<g font-family="Arial, Helvetica, sans-serif">
+  <text x="276" y="148" font-size="56" font-weight="800" letter-spacing="3" fill="#edf7ff">LUMEN HELIX</text>
+  <text x="279" y="183" font-size="24" letter-spacing="10" fill="#b8cfed">SOLUTIONS</text>
+  <rect x="279" y="201" width="590" height="2" rx="1" fill="url(#neon)" opacity=".8"/>
+  <text x="268" y="302" font-size="89" font-weight="900" letter-spacing="10" fill="url(#neon)">MAITV</text>
+  <text x="276" y="339" font-size="23" letter-spacing="3" fill="#bcd1eb">MAKE THE SCREEN YOURS.</text>
+</g>
+<!-- TV/launcher visual mark -->
+<g transform="translate(1050 69)">
+  <ellipse cx="175" cy="118" rx="186" ry="62" transform="rotate(-25 175 118)" fill="none" stroke="#aa55ff" stroke-width="10" opacity=".62" filter="url(#halo)"/>
+  <rect x="28" y="28" width="306" height="202" rx="25" fill="#0c1731" stroke="#1b508b" stroke-width="9"/>
+  <rect x="45" y="45" width="272" height="166" rx="14" fill="url(#glass)" stroke="url(#neon)" stroke-width="4"/>
+  <path d="M85 172V85L181 151L271 85V172L236 172V144L181 186L127 144V172Z" fill="url(#neon)" opacity=".95"/>
+  <rect x="159" y="143" width="48" height="54" rx="14" fill="#061735" stroke="#175b91" stroke-width="2"/>
+  <path d="M183 153l-7 10h14ZM183 188l-7-10h14ZM167 173l9-6v12ZM199 173l-9-6v12Z" fill="#d8faff"/>
+  <circle cx="183" cy="173" r="5" fill="#19f3eb"/>
+  <path d="M146 231h72l15 22h-103Z" fill="#142f58"/>
+  <rect x="110" y="250" width="146" height="8" rx="4" fill="url(#neon)"/>
+</g>
+<text x="54" y="385" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="4" fill="#8daacb">MEDIA  ·  RESEARCH  ·  DEVELOPMENT  ·  COMMUNITY</text>
+<path d="M35 360h1370" stroke="#1b416e" stroke-width="2" opacity=".65"/>
+</svg>

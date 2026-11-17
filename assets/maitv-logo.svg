@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">MAITV</title>
+  <desc id="desc">Neon M displayed inside a futuristic television, encircled by an orbital ring and overlaid with a directional control pad.</desc>
+  <defs>
+    <linearGradient id="frame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#142c5e"/><stop offset=".56" stop-color="#09152f"/><stop offset="1" stop-color="#18448a"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#081b42"/><stop offset=".55" stop-color="#0b1740"/><stop offset="1" stop-color="#171046"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#24f8eb"/><stop offset=".52" stop-color="#07bbff"/><stop offset="1" stop-color="#8455ff"/>
+    </linearGradient>
+    <linearGradient id="orbit" x1="0" x2="1">
+      <stop offset="0" stop-color="#22fff2"/><stop offset=".66" stop-color="#018eff"/><stop offset="1" stop-color="#a855ff"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g fill="none" stroke="url(#orbit)" stroke-width="13" stroke-linecap="round" opacity=".86">
+    <ellipse cx="257" cy="245" rx="240" ry="108" transform="rotate(-28 257 245)" />
+  </g>
+  <rect x="59" y="130" width="394" height="260" rx="35" fill="url(#frame)" stroke="#163869" stroke-width="6"/>
+  <rect x="75" y="147" width="362" height="225" rx="22" fill="url(#screen)" stroke="url(#neon)" stroke-width="9"/>
+  <path d="M139 318 V195 L256 278 L373 195 V318 L326 318 V277 L256 330 L186 277 V318 Z" fill="url(#neon)"/>
+  <path d="M139 195 L186 216 V318 H139 Z" fill="#078bda" opacity=".65"/>
+  <path d="M326 279 L373 195 V318 H326 Z" fill="#714cf5" opacity=".5"/>
+  <g filter="url(#glow)" stroke="#00e9f6" stroke-opacity=".36" stroke-width="2" fill="none">
+    <rect x="75" y="147" width="362" height="225" rx="22"/>
+  </g>
+  <rect x="210" y="277" width="92" height="90" rx="24" fill="#0a1a3d" opacity=".98"/>
+  <circle cx="256" cy="322" r="13" fill="#18efec"/>
+  <path d="M256 292 l-12 17 h24 Z M256 354 l-12 -17 h24 Z M226 322 l17 -12 v24 Z M286 322 l-17 -12 v24 Z" fill="#c9faff"/>
+  <path d="M223 389 h66 l20 33 h-106 Z" fill="url(#frame)"/>
+  <rect x="177" y="417" width="158" height="12" rx="6" fill="url(#neon)"/>
+  <text x="256" y="472" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="800" letter-spacing="7" text-anchor="middle" fill="#edfaff">MAITV</text>
+</svg>

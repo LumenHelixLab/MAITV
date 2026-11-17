@@ -1,0 +1,23 @@
+name: "Feature request"
+description: "Suggest a focused and reversible MAITV capability"
+title: "[Idea] "
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: "Problem or user goal"
+      description: "What does this solve?"
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: "Proposed solution"
+      description: "Describe the behavior and how it would work."
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: "Compatibility and rollback"
+      description: "Note hardware assumptions, safety risks, and how to reverse the change."

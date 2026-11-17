@@ -1,0 +1,42 @@
+name: "Bug report"
+description: "Report a reproducible MAITV problem"
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: "Do not upload pairing tokens, serial numbers, firmware blobs, private logs, or media."
+  - type: textarea
+    id: behavior
+    attributes:
+      label: "Observed behavior"
+      description: "What happened?"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected behavior"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: "Reproduction steps"
+      placeholder: "1. Open local demo...\n2. Press key...\n3. Observe..."
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: "Where was this tested?"
+      options:
+        - "Desktop browser (local prototype)"
+        - "Vizio V655-H9 (physical TV)"
+        - "Other / unknown"
+    validations:
+      required: true
+  - type: textarea
+    id: checks
+    attributes:
+      label: "Tests and sanitized logs"
+      description: "Only share non-sensitive test output, including Node version if relevant."
