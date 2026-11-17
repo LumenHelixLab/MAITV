@@ -1,6 +1,6 @@
 # Stremio + Torrentio restoration for MAITV
 
-**Status (November 17, 2026): Torrentio confirmed present.** The user inspected Stremio on Danu and confirmed Torrentio is listed under installed add-ons, together with multiple other add-ons. Preserve this configuration; **do not reinstall or reset add-ons**. Whether the same account and Torrentio sources are available inside the Vizio's Stremio Web is not yet verified.
+**Status (November 17, 2026): Torrentio confirmed present.** The user inspected Stremio on Danu and confirmed Torrentio is listed under installed add-ons, together with multiple other add-ons. Preserve this configuration; **do not reinstall or reset add-ons**. The user has also confirmed that Stremio Web on the Vizio is signed into the same account and displays Torrentio. Actual stream availability and video playback are not yet verified.
 
 ## What belongs where
 - **Vizio V655-H9:** MAITV's temporary Conjure launcher displays Stremio Web. It is not Android TV and has no consumer APK sideload path.
@@ -22,7 +22,7 @@
 - [x] Torrentio configuration page opened in Danu's browser.
 - [x] Remote directional navigation of **MAITV test page** reported working by user.
 - [x] User confirmed Torrentio is listed among installed Stremio add-ons on Danu (other add-ons also present; no names inventoried).
-- [ ] Confirm same account is signed in on Vizio Stremio Web.
+- [x] User confirmed Stremio Web on Vizio uses the same account and shows Torrentio.
 - [ ] Confirm the Torrentio stream options appear for authorized content.
 - [ ] Verify optional Danu streaming server port 11470 is running/reachable if the web player requires it.
 - [ ] Verify the actual Stremio Web interface can be navigated by the Vizio remote.

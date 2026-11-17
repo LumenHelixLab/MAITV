@@ -46,7 +46,7 @@ The name is spelled **M-A-I-T-V**. This repository is maintained under **LumenHe
 | **Remote navigation** | D-pad navigation confirmed on TV by user; keyboard inspector, opt-in Danu relay and eight automated tests | Capture actual keycodes and adapt Stremio Web focus |
 | **Custom home** | Responsive four-tile browser mockup with a visible focus indicator | An optional, reversible launcher adapter |
 | **Stremio integration** | Original MA.I.TV handoff and Conjure launch findings recovered; bridge source still missing | Recover source, verify transport and navigation |
-| **Add-ons** | User confirms Torrentio and several other add-ons already installed in Stremio on Danu; no reinstall performed | Verify the same Stremio account on Vizio and test playback |
+| **Add-ons** | User confirms Torrentio is installed in Stremio on Danu and visible under the same account on Vizio | Test selection and playback of authorized streams |
 | **OS research** | Model/firmware inventory and matching open-source research reference | Compatibility audits before any device-specific experiment |
 | **Privacy** | In-memory sanitized input logs; localhost-only by default; no pairing tokens | Controlled on-TV testing and opt-in network analysis |
 
@@ -133,7 +133,8 @@ See [device details](docs/DEVICE.md) and the [technical plan](docs/TECHNICAL_PLA
 - [ ] Validate OK and Back behavior inside Stremio Web
 - [x] Document restoring previously configured Torrentio in the existing Stremio account
 - [x] Verify Torrentio already listed in Stremio on Danu (user confirmed)
-- [ ] Verify the same Stremio account and Torrentio synchronization on the TV; test permitted playback
+- [x] User confirmed the same Stremio account and Torrentio visibility on Vizio
+- [ ] Verify stream selection and permitted video playback with the Vizio remote
 - [ ] Prototype an optional launcher with a documented rollback path
 - [ ] Complete a security/licensing review before any public release
 
