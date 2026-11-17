@@ -12,3 +12,5 @@ coverage/
 *.bak
 .DS_Store
 Thumbs.db
+# Private locally packaged APKs and checksums; deliver through GitHub Releases
+/release/

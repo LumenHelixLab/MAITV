@@ -6,10 +6,12 @@
 
 <div align="center">
   <a href="https://github.com/LumenHelixLab/MAITV/actions/workflows/tests.yml"><img alt="Input test workflow" src="https://github.com/LumenHelixLab/MAITV/actions/workflows/tests.yml/badge.svg" /></a>
+  <a href="https://github.com/LumenHelixLab/MAITV/actions/workflows/android.yml"><img alt="Android alpha build CI" src="https://github.com/LumenHelixLab/MAITV/actions/workflows/android.yml/badge.svg" /></a>
   <img alt="Project stage: experimental" src="https://img.shields.io/badge/Stage-Experimental-7c3aed?style=flat-square" />
   <img alt="Node.js 18 or later" src="https://img.shields.io/badge/Node.js-18%2B-339933?logo=nodedotjs&amp;logoColor=white&amp;style=flat-square" />
   <img alt="Safety: no firmware writes" src="https://img.shields.io/badge/Firmware_Writes-None-00bcd4?style=flat-square" />
   <img alt="Target: Vizio V655-H9" src="https://img.shields.io/badge/Target-V655--H9-2563eb?style=flat-square" />
+  <img alt="Android remote: alpha" src="https://img.shields.io/badge/Android_remote-0.4_alpha-00d7e8?style=flat-square&logo=android&logoColor=white" />
 </div>
 
 <div align="center">
@@ -27,6 +29,7 @@
   <a href="docs/REMOTE_DIAGNOSTICS.md"><strong>Remote diagnostics</strong></a> ·
   <a href="docs/TV_TEST_SESSION.md"><strong>On-TV test</strong></a> ·
   <a href="docs/STREMIO_TORRENTIO.md"><strong>Torrentio setup</strong></a> ·
+  <a href="android/README.md"><strong>Android remote</strong></a> ·
   <a href="docs/DEVICE.md"><strong>Device notes</strong></a>
 </div>
 
@@ -43,12 +46,23 @@ The name is spelled **M-A-I-T-V**. This repository is maintained under **LumenHe
 
 | 🧭 Focus | 🛠️ What exists now | 🚧 What comes next |
 |:--|:--|:--|
-| **Remote navigation** | D-pad navigation confirmed on TV by user; keyboard inspector, opt-in Danu relay and eight automated tests | Capture actual keycodes and adapt Stremio Web focus |
+| **Remote navigation** | D-pad navigation confirmed on TV by user; Android remote alpha built with PIN pairing and local key commands | Validate Android controls on Pixel; capture physical Vizio keycodes |
 | **Custom home** | Responsive four-tile browser mockup with a visible focus indicator | An optional, reversible launcher adapter |
-| **Stremio integration** | Original MA.I.TV handoff and Conjure launch findings recovered; bridge source still missing | Recover source, verify transport and navigation |
-| **Add-ons** | User confirms Torrentio is installed in Stremio on Danu and visible under the same account on Vizio | Test selection and playback of authorized streams |
+| **Stremio integration** | Conjure launch proven on Vizio; Android alpha implements one-tap direct Stremio launch | Confirm the Android app can pair and launch Stremio on actual hardware |
+| **Add-ons and search** | Existing Stremio add-ons stay account-based. Android alpha offers SmartCast ASCII text input | Test if Stremio search accepts phone-keyboard characters; do not redistribute add-ons |
 | **OS research** | Model/firmware inventory and matching open-source research reference | Compatibility audits before any device-specific experiment |
 | **Privacy** | In-memory sanitized input logs; localhost-only by default; no pairing tokens | Controlled on-TV testing and opt-in network analysis |
+
+## 📱 MAITV Android — private alpha
+
+**MAITV v0.4.0-alpha1** is a new native Android companion remote under [android/](android/README.md). It talks **directly to the compatible Vizio's local SmartCast HTTPS API** using the PIN shown on your television—no Chromecast, Danu streaming server, phone-screen mirroring, third-party accounts or TV firmware modification. The pairing credential is encrypted on the phone using Android Keystore. The original Lumen Helix bulb artwork is included.
+
+- **Remote:** D-pad, OK, Back, Home, Menu, volume, mute, transport and input controls.
+- **Launch:** one tap sends the fixed official Stremio Web URL into Conjure.
+- **Phone keyboard:** send ASCII text from Android's keyboard or built-in dictation to a focused TV input field. **Stremio Web search may still reject input** until we validate/repair its Conjure text-field handling.
+- **Build verification:** Android SDK 35 build passed, APK debug signature verified, and all four native Java unit tests passed. **Pairing and physical Android control have not yet been verified on a phone.**
+
+The alpha remains private and debug-signed. Read the [Android setup and security notes](android/README.md) and [MVP release gates](docs/MVP_PACKAGING.md) before installing or distributing it.
 
 ## 🕹️ Quick start
 
@@ -88,6 +102,7 @@ MAITV/
 ├── tests/remote.test.mjs   Navigation and diagnostic tests
 ├── tests/server.test.mjs   Local HTTP smoke test
 ├── tools/serve.mjs         Localhost default; opt-in LAN preview
+├── android/                Native Android SmartCast remote (private alpha)
 ├── docs/                   Device notes, technical plan, release checklist
 ├── .github/                CI and contribution templates
 └── README.md
@@ -134,6 +149,9 @@ See [device details](docs/DEVICE.md) and the [technical plan](docs/TECHNICAL_PLA
 - [x] Document restoring previously configured Torrentio in the existing Stremio account
 - [x] Verify Torrentio already listed in Stremio on Danu (user confirmed)
 - [x] User confirmed the same Stremio account and Torrentio visibility on Vizio
+- [x] Compile Android remote v0.4.0-alpha1 and run four JVM unit tests
+- [ ] Validate native Android pairing and controls on Pixel 10a
+- [ ] Confirm phone keyboard ASCII is accepted by Stremio's focused search field
 - [ ] Verify stream selection and permitted video playback with the Vizio remote
 - [ ] Prototype an optional launcher with a documented rollback path
 - [ ] Complete a security/licensing review before any public release
