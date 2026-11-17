@@ -27,6 +27,20 @@
 - [ ] Verify optional Danu streaming server port 11470 is running/reachable if the web player requires it.
 - [ ] Verify the actual Stremio Web interface can be navigated by the Vizio remote.
 
+## MAITV 1.0 RC2 sign-in workaround (new, hardware unverified)
+
+The TV browser does not reliably allow D-pad access to Stremio’s profile icon. The MAITV Windows and Android clients now include a fixed **Open Stremio sign-in on TV** action, which launches `https://web.stremio.com/#/intro` directly through the paired SmartCast Conjure app. This does **not** inject JavaScript into Stremio, install APKs on Vizio, or bypass its authentication. The route is present in Stremio’s upstream web source; behavior on this Vizio is not yet confirmed.
+
+**Windows:** After PIN pairing, open **Search & Apps → Open Stremio sign-in on TV**. On the television, select the email text field before using **Type Email on TV**. Select the password field and explicitly confirm that it is focused before using **Type Password on TV**. The password field is masked and cleared before the send attempt; MAITV does not save the credentials. Text entry is experimental and could enter text into the wrong TV field if focus is incorrect. Passwords are not placed in URLs or logs.
+
+**Android:** After PIN pairing, use **Open Stremio sign-in on TV**, select the email field, and send the email through **Phone keyboard → TV text**. Select the password field before using **Private Stremio password entry**. The private field is masked and cleared before sending, with a second confirmation dialog. Android Keystore protects the TV pairing token, not Stremio login credentials (which are not retained).
+
+**Direct navigation workaround:** The new Windows **Search & Apps → Jump to a Stremio page** panel and Android **Stremio direct navigation** group include fixed Home (`#/`), Settings (`#/settings`), Add-ons (`#/addons`) and Library (`#/library`) links. The routes are present in the upstream Stremio Web router. These commands bypass its unreachable sidebar; they do not modify the Stremio page DOM or guarantee remote focus on headers/banners.
+
+**Validation gates:** (1) pair the updated MAITV client to the physical Vizio; (2) confirm the direct `/intro` route reaches Stremio login; (3) verify focus and one harmless test string before sending any password; (4) confirm the signed-in account matches Danu and Torrentio appears in **My Add-ons**. If focus or typing fails, do **not** enter a password through the remote test. Use an officially supported Stremio device/browser to manage the add-on and investigate Conjure compatibility separately.
+
+The earlier Danu helper had no usable saved TV pairing during the November 17 remote attempt, so no sign-in launch was sent and hardware acceptance remains pending. MAITV does not automatically authenticate a Stremio account or provision Torrentio without user authorization.
+
 ## Boundaries
 Torrentio configuration may include third-party credentials. MAITV does not collect or install these automatically. Only access and play content you have rights to use. Avoid reinstalling the add-on until the current account inventory has been checked.
 

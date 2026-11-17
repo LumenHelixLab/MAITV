@@ -1,7 +1,7 @@
 "use strict";
 const test=require("node:test");
 const assert=require("node:assert/strict");
-const {SmartCast,privateIPv4,asciiText,stremioSearchUrl,normalizePin,KEYMAP,STREMIO_WEB,requestTV}=require("../src/lib/smartcast.cjs");
+const {SmartCast,privateIPv4,asciiText,stremioSearchUrl,normalizePin,KEYMAP,STREMIO_WEB,STREMIO_SIGNIN,STREMIO_SECTIONS,requestTV}=require("../src/lib/smartcast.cjs");
 
 test("reject non-private or malformed TV addresses",()=>{
   for(const ip of ["192.168.1.67","10.2.8.13","172.16.5.10","172.31.2.91"])assert.equal(privateIPv4(ip),true,ip);
@@ -31,6 +31,38 @@ test("official Stremio search route encodes the entire query and never accepts a
   const client=new SmartCast(async req=>{calls.push(req);return {data:{}};});
   await client.launchSearch("192.168.1.67","bearer","f".repeat(64),"A / B");
   assert.equal(calls[0].body.VALUE.MESSAGE,"https://web.stremio.com/#/search?search=A%20%2F%20B");
+});
+test("account sign-in uses one fixed official Stremio route, no credential URL parameters",async()=>{
+  assert.equal(STREMIO_SIGNIN,"https://web.stremio.com/#/intro");
+  const calls=[];
+  const client=new SmartCast(async req=>{calls.push(req);return {data:{STATUS:{RESULT:"SUCCESS"}}};});
+  await client.launchSignIn("192.168.1.67","bearer","f".repeat(64));
+  assert.equal(calls.length,1);
+  assert.equal(calls[0].path,"/app/launch");
+  assert.equal(calls[0].body.VALUE.MESSAGE,STREMIO_SIGNIN);
+  assert.equal(calls[0].body.VALUE.APP_ID,"17");
+  assert.equal(JSON.stringify(calls[0]).includes("password"),false);
+});
+test("fixed Stremio navigation routes cannot be changed to arbitrary URLs", async()=>{
+  const expected={
+    home:"https://web.stremio.com/#/",
+    settings:"https://web.stremio.com/#/settings",
+    addons:"https://web.stremio.com/#/addons",
+    library:"https://web.stremio.com/#/library"
+  };
+  assert.deepEqual(STREMIO_SECTIONS,expected);
+  const calls=[];
+  const client=new SmartCast(async req=>{calls.push(req);return {data:{STATUS:{RESULT:"SUCCESS"}}};});
+  for(const section of Object.keys(expected)){
+    const r=await client.launchSection("192.168.1.67","bearer","f".repeat(64),section);
+    assert.equal(r.ok,true);
+    assert.equal(calls.at(-1).path,"/app/launch");
+    assert.equal(calls.at(-1).body.VALUE.MESSAGE,expected[section]);
+  }
+  const count=calls.length;
+  for(const forbidden of [null,"","login","../settings","https://evil.example/","constructor","__proto__"])
+    await assert.rejects(()=>client.launchSection("192.168.1.67","bearer","f".repeat(64),forbidden),/Unknown Stremio page/);
+  assert.equal(calls.length,count);
 });
 test("fixed remote mapping and limited launch URL",async()=>{
   const calls=[];

@@ -58,6 +58,8 @@ function startIpc(){
   }));
   ipcMain.handle("maitv:status",secureCall(async()=>pairedAction(r=>api.status(r.host,r.token,r.fingerprint))));
   ipcMain.handle("maitv:launch",secureCall(async()=>pairedAction(r=>api.launchStremio(r.host,r.token,r.fingerprint))));
+  ipcMain.handle("maitv:launchSignIn",secureCall(async()=>pairedAction(r=>api.launchSignIn(r.host,r.token,r.fingerprint))));
+  ipcMain.handle("maitv:launchSection",secureCall(async({section})=>pairedAction(r=>api.launchSection(r.host,r.token,r.fingerprint,section))));
   ipcMain.handle("maitv:searchTV",secureCall(async({query})=>pairedAction(r=>api.launchSearch(r.host,r.token,r.fingerprint,query))));
   ipcMain.handle("maitv:key",secureCall(async({key})=>pairedAction(r=>api.sendKey(r.host,r.token,r.fingerprint,key))));
   ipcMain.handle("maitv:text",secureCall(async({text})=>pairedAction(r=>api.sendText(r.host,r.token,r.fingerprint,text))));

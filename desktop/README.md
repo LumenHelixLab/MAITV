@@ -1,4 +1,4 @@
-# MAITV Desktop for Windows — v1.0.0-rc.1
+# MAITV Desktop for Windows — v1.0.0-rc.2 (test candidate)
 
 A local-first desktop remote for SmartCast-era Vizio televisions, with the official **Lumen Helix Solutions** bulb branding, an interactive TV remote, one-tap Stremio Web, and optional text-entry experiments.
 
@@ -23,6 +23,8 @@ A local-first desktop remote for SmartCast-era Vizio televisions, with the offic
 | Nearby TV discovery | Opt-in 6.5-second local mDNS scan; click your Vizio to fill its IPv4 field, with manual IPv4 fallback |
 | TV search route | Official Stremio Web hash-router search URL, encoded with PC query and opened through fixed-origin Conjure; **Vizio compatibility pending** |
 | PC-to-TV keyboard text | Separate ASCII CODESET 0 fallback, **experimental and unverified in Stremio Conjure** |
+| Direct Stremio account sign-in | Fixed allowlisted `https://web.stremio.com/#/intro` route with masked, confirmation-gated password entry; **Vizio hardware test pending** |
+| Direct Stremio page shortcuts | Home, Settings, Add-ons, Library; all fixed Stremio Web hash routes via Conjure; **TV test pending** |
 | Open Stremio Web on PC | Launches official page in system browser, without giving MAITV access to Stremio credentials |
 | UI help | Hover and keyboard-focus tooltips describe remote actions, setup, discovery and experimental functions |
 | Always-on-top mode | Optional, user-initiated |
@@ -38,6 +40,7 @@ A local-first desktop remote for SmartCast-era Vizio televisions, with the offic
 4. Click **Start Pairing**. A 4-digit confirmation code should appear on the TV.
 5. Type that code into MAITV and click **Verify & Connect**. The token is encrypted with Windows' safeStorage and never appears in the renderer.
 6. Click **Open Stremio on TV**. Use the desktop remote, or keyboard shortcuts when the focus is outside a text field.
+   - If Stremio’s sidebar/profile icon cannot receive focus, open **Search & Apps → Open Stremio sign-in on TV**. Confirm the login page on the TV, focus its email input, then use **Type Email on TV**. Focus the password field and tick the explicit confirmation checkbox before using **Type Password on TV**. Passwords are masked and cleared; never type credentials unless TV focus is visibly correct. TV compatibility is still experimental.
 7. For a no-TV-keyboard experiment, open **Search & Apps**, enter a title and select **Search on TV**. It launches the official Stremio Web search route with a URL-encoded query. This is supported in Stremio Web source but still needs Vizio Conjure validation.
 8. The separate ASCII input feature on the Remote page sends characters to a focused TV field. If that fails, it does not imply the URL-route test failed.
 
@@ -54,7 +57,7 @@ npm start
 npm run dist:win
 ~~~
 
-**Current version: 1.0.0-rc.1 (release candidate, not stable).** Packaging produces a Windows Setup EXE and a portable EXE under `desktop/dist`. These are **unsigned test builds**; Windows SmartScreen may warn. Hardware pairing, code signing and an independent security review remain required before a stable release. Historical private alpha: [v0.6.0-alpha.1](https://github.com/LumenHelixLab/MAITV/releases/tag/desktop-v0.6.0-alpha1). For the coordinated release procedure, see [VERSIONING.md](../VERSIONING.md).
+**Source candidate: 1.0.0-rc.2 (not stable; not yet hardware-accepted).** Packaging produces a Windows Setup EXE and a portable EXE under `desktop/dist`. These are **unsigned test builds**; Windows SmartScreen may warn. Hardware pairing, code signing and an independent security review remain required before a stable release. Historical private alpha: [v0.6.0-alpha.1](https://github.com/LumenHelixLab/MAITV/releases/tag/desktop-v0.6.0-alpha1). For the coordinated release procedure, see [VERSIONING.md](../VERSIONING.md).
 
 ## Architecture
 

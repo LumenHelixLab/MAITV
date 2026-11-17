@@ -336,6 +336,18 @@ public final class MainActivity extends Activity {
         stremio.setTextSize(18);
         launch.addView(stremio);
         stremio.setOnClickListener(v -> command("Opening Stremio Web…", () -> api.launchStremio(tv.ip, tv.token, tv.fingerprint), "Stremio Web launch sent"));
+        Button signIn = action("Open Stremio sign-in on TV", Color.rgb(29, 73, 99));
+        launch.addView(signIn);
+        signIn.setOnClickListener(v -> command("Opening Stremio sign-in…", () -> api.launchSignIn(tv.ip, tv.token, tv.fingerprint), "Sign-in route sent. Verify page on TV."));
+
+        LinearLayout directLinks = group("Stremio direct navigation");
+        TextView directHint = text("If the left menu or top controls are unreachable, jump directly to these pages. Requests are sent to the TV browser; verify the displayed page.", 13, SUB, false);
+        directHint.setPadding(0, 0, 0, dp(8));
+        directLinks.addView(directHint);
+        addStremioSectionButton(directLinks, "Settings", "settings");
+        addStremioSectionButton(directLinks, "Add-ons", "addons");
+        addStremioSectionButton(directLinks, "Library", "library");
+        addStremioSectionButton(directLinks, "Home", "home");
 
         LinearLayout pad = group("Gesture remote");
         TextView padHint = text("Swipe to move • Tap center to select • One command per gesture", 12, SUB, false);
@@ -356,11 +368,11 @@ public final class MainActivity extends Activity {
         addRemoteRow(remote, new String[] { "Vol −", "Mute", "Vol +" }, new String[] { "VOL_DOWN", "MUTE", "VOL_UP" });
         addRemoteRow(remote, new String[] { "Input", "Pause", "Play" }, new String[] { "INPUT", "PAUSE", "PLAY" });
 
-        LinearLayout search = group("Phone keyboard → TV search");
-        TextView searchNote = text("First select the Search field on the TV, even if no TV keyboard appears. Type here using the phone keyboard or microphone, then tap Send. SmartCast ASCII entry is experimental inside Stremio Web.", 13, SUB, false);
+        LinearLayout search = group("Phone keyboard → TV text");
+        TextView searchNote = text("First select a text field on the TV, even if no TV keyboard appears. Send account email or search text from the phone keyboard. Do not enter passwords here; use Private password entry below. SmartCast typing in Stremio Web is experimental.", 13, SUB, false);
         searchNote.setPadding(0, 0, 0, dp(12));
         search.addView(searchNote);
-        EditText query = input("Type your search on the phone…", false);
+        EditText query = input("Email or search text…", false);
         query.setFilters(new android.text.InputFilter[] { new android.text.InputFilter.LengthFilter(60) });
         query.setImeOptions(EditorInfo.IME_ACTION_SEND);
         search.addView(query);
@@ -371,6 +383,21 @@ public final class MainActivity extends Activity {
             if (actionId == EditorInfo.IME_ACTION_SEND) { sendText(query); return true; }
             return false;
         });
+
+        LinearLayout account = group("Private Stremio password entry");
+        TextView caution = text("After opening Stremio sign-in on TV, select its password field first. Enter your password below; it is masked, never saved, and cleared before sending. Sending to an unfocused field may expose your password.", 13, SUB, false);
+        account.addView(caution);
+        EditText privatePassword = input("Stremio password (private)", false);
+        privatePassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        privatePassword.setFilters(new android.text.InputFilter[] { new android.text.InputFilter.LengthFilter(60) });
+        account.addView(privatePassword);
+        Button sendPrivate = action("Send password to selected TV field", Color.rgb(29, 73, 99));
+        account.addView(sendPrivate);
+        sendPrivate.setOnClickListener(v -> new AlertDialog.Builder(this)
+            .setTitle("Confirm TV password field")
+            .setMessage("Is the Stremio password input visibly selected on the television? Do not send if you cannot verify the focus.")
+            .setNegativeButton("Cancel", null)
+            .setPositiveButton("Send", (dialog, which) -> sendPrivateText(privatePassword)).show());
 
         LinearLayout settings = group("Connection & privacy");
         Button check = action("Check TV connection", Color.rgb(27, 49, 83));
@@ -397,10 +424,34 @@ public final class MainActivity extends Activity {
         root.addView(foot);
     }
 
+    private void addStremioSectionButton(LinearLayout panel, String name, String section) {
+        Button button = action("Open Stremio " + name + " on TV", Color.rgb(29, 73, 99));
+        LinearLayout.LayoutParams spacing = new LinearLayout.LayoutParams(-1, dp(54));
+        spacing.setMargins(0, dp(5), 0, dp(5));
+        panel.addView(button, spacing);
+        button.setOnClickListener(v -> command("Opening Stremio " + name + "…",
+            () -> api.launchSection(tv.ip, tv.token, tv.fingerprint, section),
+            name + " page requested. Confirm on TV."));
+    }
+
+    private void sendPrivateText(EditText field) {
+        if (tv == null) return;
+        String privateValue = field.getText().toString();
+        field.setText(""); // Clear immediately, even if TV delivery fails.
+        if (!SmartCastProtocol.isAsciiSearchText(privateValue)) {
+            setStatus("Enter 1–60 printable ASCII password characters. Nothing sent.");
+            return;
+        }
+        execute("Sending private text (contents not logged)…", () -> {
+            api.sendText(tv.ip, tv.token, tv.fingerprint, privateValue);
+            return true;
+        }, ignored -> setStatus("Private text command sent. Confirm its placement on TV."));
+    }
+
     private void sendText(EditText field) {
         if (tv == null) return;
         String s = field.getText().toString();
-        if (s.isEmpty()) { setStatus("Type a search phrase first."); return; }
+        if (s.isEmpty()) { setStatus("Type account email or search text first."); return; }
         execute("Sending " + s.length() + " ASCII characters (content not logged)…",
             () -> {
                 api.sendText(tv.ip, tv.token, tv.fingerprint, s);
