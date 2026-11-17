@@ -1,4 +1,4 @@
-# MAITV for Android — v0.4.0 alpha
+# MAITV for Android — v0.5.0-alpha2
 
 Native, local-first Vizio SmartCast remote for Android. **No TV app installation, casting, cloud account or running Danu server is required for the core remote.**
 
@@ -12,21 +12,21 @@ This alpha targets the confirmed Vizio **V655-H9 (firmware 1.720.9.1-1)** and An
 | Four-digit SmartCast PIN pairing | Implemented; physical Android test pending |
 | Scoped TLS certificate pin after pairing | Implemented |
 | Android Keystore encrypted bearer-token storage | Implemented |
-| D-pad, OK, Back, Home, Menu | Implemented from documented SmartCast key codes; hardware test pending |
+| D-pad, OK, Back, Home, Menu | Remote buttons and swipe/tap gesture pad with haptic response implemented; hardware test pending |
 | Volume, mute, play/pause, input | Implemented; hardware test pending |
 | One-tap Stremio Web launch | Conjure namespace 4, app 17; previously confirmed from Danu, Android test pending |
 | Phone text keyboard / native dictation | Sends batched ASCII remote commands to a focused TV input field |
 | Stremio keyboard activation | **Not guaranteed**: Conjure may not accept ASCII input in Stremio Web |
 | Torrentio | Remains in the Stremio account, not bundled with MAITV |
-| Automatic discovery | Future milestone; manual private IPv4 entry for alpha |
+| Nearby TV discovery | Opt-in 12-second mDNS search for Cast-capable devices; user must confirm which device is their Vizio; manual IPv4 fallback |
 | Play Store release | Not ready; private debug-signed APK only |
 
 ## Pair from your Android phone
 
 1. Connect the phone and Vizio to the same trusted Wi-Fi network.
-2. Open MAITV. Enter the private IPv4 address from the TV's Network Information.
+2. Open MAITV and tap **Find nearby TVs**. Choose the correct Vizio from any discovered Cast-capable devices; discovery is not guaranteed on all routers. If missing, enter its private IPv4 address from Network Information manually.
 3. Tap Start pairing; enter the four-digit PIN displayed on the television.
-4. Tap Open Stremio Web on TV and use the MAITV remote controls.
+4. Tap **Open Stremio Web on TV** and navigate using **swipe/tap gesture pad** or the remote buttons.
 5. For text, focus the search field on the TV, use your phone keyboard or microphone, and tap Send text. **It may still fail inside Stremio's Conjure browser** until we verify or adapt that input pathway.
 
 Use Forget this TV to clear the saved pairing from your phone.
@@ -55,7 +55,7 @@ The debug APK lands at app/build/outputs/apk/debug/app-debug.apk. Android Lint b
 - SmartCast API mappings may vary on newer devices; test the supported V655-H9 first.
 - ASCII CODESET 0 sends text only to compatible focused fields. It does not guarantee the native TV keyboard appears in Stremio Web. Cross-origin webpage focus cannot be forced through the basic SmartCast remote API.
 - Pairing tokens are control credentials. Never publish them, store them in a Git repository or forward them to a third-party service. Forget on phone deletes the encrypted token but the TV may still list the paired device.
-- This alpha requires one manual device IP. Automatic discovery and multiple TV profiles are planned.
+- Discovery is a user-initiated mDNS search for `_googlecast._tcp` peers, not proof of Vizio identity. Confirm the model physically before pairing. Some Wi-Fi/router settings suppress mDNS, so manual IP entry remains supported. Multi-TV profiles are planned.
 - No Vizio firmware, Stremio player code, Torrentio code or copyrighted streams are bundled.
 
 ## Hardware acceptance
@@ -63,7 +63,7 @@ The debug APK lands at app/build/outputs/apk/debug/app-debug.apk. Android Lint b
 1. Install the private alpha on the Pixel and pair using the TV's PIN.
 2. Test D-pad, OK, Back, Home, volume, and launching Stremio.
 3. Test phone-keyboard ASCII entry in the focused Stremio search field, explicitly recording any failure.
-4. Only after passing these gates, add discovery, multi-TV profiles and production release signing.
+4. Validate discovery and gesture navigation in the Pixel's native MAITV interface. Add multiple profiles, production release signing and validated Stremio search integration only after these gates pass.
 
 References: https://github.com/exiva/Vizio_SmartCast_API , https://github.com/raman325/pyvizio , https://github.com/raman325/vizaio , https://github.com/get-air/vizio .
 

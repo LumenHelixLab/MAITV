@@ -1,16 +1,16 @@
-# MAITV MVP Packaging — v0.4
+# MAITV MVP Packaging — v0.5
 
 ## Product definition
 
-**MAITV** is a local-first SmartCast control platform, initially targeting the Vizio V655-H9. The Android private prerelease is available at https://github.com/LumenHelixLab/MAITV/releases/tag/v0.4.0-alpha1 . It does not replace or flash ViziOS. The product's differentiation is direct navigation, one-tap Stremio Web, secure pairing and eventually keyboard search without requiring Chromecast or a TV-side APK.
+**MAITV** is a local-first SmartCast control platform, initially targeting the Vizio V655-H9. An Android 0.4 debug alpha was privately released; 0.5.0-alpha2 adds mDNS discovery, touchpad gestures, and new tests. Verify the newer prerelease from GitHub before downloading. It does not replace or flash ViziOS. The product's differentiation is direct navigation, one-tap Stremio Web, secure pairing and eventually keyboard search without requiring Chromecast or a TV-side APK.
 
 ### Android alpha (packaged in this milestone)
 
 - Native Android remote with dark Lumen Helix branding and the **original official bulb PNG from lumenhelix.com**.
 - Android 8.0+; Android SDK 35/AGP 8.7.3; no proprietary UI or streaming dependencies.
-- Manual private IPv4 address entry, four-digit TV PIN pairing, local HTTPS endpoint port 7345.
+- Opt-in 12-second mDNS discovery of Cast-capable neighbors (user must verify Vizio identity); manual private IPv4 fallback, four-digit TV PIN pairing, local HTTPS endpoint port 7345.
 - Per-device SHA-256 TLS certificate pin after pairing; Android Keystore AES-256-GCM bearer-token encryption.
-- D-pad / OK / Back / Home / Menu / volume / mute / playback / input button controls.
+- D-pad / OK / Back / Home / Menu / volume / mute / playback / input buttons, plus swipe/tap touchpad with haptics and accessibility labels.
 - One-tap fixed URL launch of official Stremio Web through Vizio Conjure (ns4/id17).
 - Native phone soft keyboard or normal Android voice dictation with SmartCast ASCII CODESET 0 send-to-focused-field.
 - Forget-TV pairing control, clear connection status and no background telemetry.
@@ -28,13 +28,13 @@
 |---|---|
 | Secure client with fixed allowlisted TV commands | Implemented, source-reviewed |
 | Android SDK 35 build and lint on Danu | Passed; two documented security/design review warnings (self-signed TLS trust manager and durable SharedPreferences commits), no blocking errors |
-| Pure JVM unit tests | Passed |
+| Pure JVM unit tests | Seven passing (four protocol + three gesture math), plus Android compilation and lint |
 | Android APK is debug-signed and has SHA-256 checksum | Private alpha only |
 | Install on Pixel and pair with physical Vizio | **Pending** |
 | D-pad, Home, Back, volume working from Pixel | **Pending** |
 | Stremio Web launch from Pixel | **Pending** |
 | ASCII text accepted by Stremio search | **Pending**; firmware/browser dependent |
-| Torrentio account recognition & lawful playback | Installation was confirmed on Danu; TV consistency needs final testing |
+| Torrentio account recognition & lawful playback | Installed on Danu, but user later reported Torrentio missing on TV. This is an open blocker, not solved |
 | Independent security + license audit | **Pending** |
 | Organization production code-signing key | **Pending** |
 | Public repository and promotion | **Not approved** (keep private) |
@@ -44,7 +44,7 @@
 1. Hardware acceptance testing on Pixel 10a and V655-H9.
 2. Fix any detected pairing/TLS or keycode issues with regression tests.
 3. Confirm whether Conjure/Stremio uses the SmartCast ASCII text path. If the browser doesn't accept text, build an explicitly authorized MAITV search interface rather than claiming an on-screen keyboard magically appears.
-4. Add mDNS discovery, multi-TV profiles, LAN-only security tests, accessible touchpad, and phone-to-TV fallback.
+4. Validate the now-implemented mDNS discovery and gesture touchpad on the Pixel. Follow with multi-TV profiles, LAN-only security instrumentation, accessible feedback, and phone-to-TV keyboard fallback.
 5. License review for any third-party Stremio/VIDAA-derived code, update GitHub README, add screenshots and branded social preview.
 6. Build signed release APK/AAB and Windows installer only after successful hardware testing.
 

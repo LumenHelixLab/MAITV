@@ -43,6 +43,7 @@ public final class MainActivity extends Activity {
     private final Handler main = new Handler(Looper.getMainLooper());
     private final SmartCastProtocol api = new SmartCastProtocol();
     private SecureStore store;
+    private TvDiscovery discovery;
     private SecureStore.SavedTv tv;
     private SmartCastProtocol.Challenge challenge;
     private TextView statusLine;
@@ -53,6 +54,7 @@ public final class MainActivity extends Activity {
         getWindow().setStatusBarColor(BG);
         getWindow().setNavigationBarColor(BG);
         store = new SecureStore(this);
+        discovery = new TvDiscovery(this);
         showLoading();
         worker.execute(() -> {
             try {
@@ -71,6 +73,7 @@ public final class MainActivity extends Activity {
     }
 
     @Override protected void onDestroy() {
+        if (discovery != null) discovery.stop();
         worker.shutdownNow();
         super.onDestroy();
     }
@@ -239,6 +242,43 @@ public final class MainActivity extends Activity {
         ip.setInputType(InputType.TYPE_CLASS_PHONE);
         panel.addView(ip);
 
+        Button discover = action("Find nearby TVs", Color.rgb(28, 57, 88));
+        panel.addView(discover);
+        TextView hint = text("Find uses local network discovery for Cast-capable devices. Results can include non-Vizio devices; confirm the correct TV before pairing.", 12, SUB, false);
+        hint.setPadding(0, dp(8), 0, dp(10));
+        panel.addView(hint);
+        LinearLayout discovered = new LinearLayout(this);
+        discovered.setOrientation(LinearLayout.VERTICAL);
+        panel.addView(discovered);
+        discover.setOnClickListener(v -> {
+            discovered.removeAllViews();
+            discover.setEnabled(false);
+            setStatus("Looking for nearby Cast-capable TVs for up to 12 seconds…");
+            discovery.start(new TvDiscovery.Callback() {
+                @Override public void onFound(String name, String address) {
+                    Button choice = action(name + "  ·  " + address, Color.rgb(22, 48, 77));
+                    LinearLayout.LayoutParams space = new LinearLayout.LayoutParams(-1, dp(53));
+                    space.setMargins(0, dp(4), 0, 0);
+                    discovered.addView(choice, space);
+                    choice.setContentDescription("Select nearby device " + name + " at " + address);
+                    choice.setOnClickListener(tap -> {
+                        ip.setText(address);
+                        setStatus("Selected " + name + ". Confirm this is your Vizio before pairing.");
+                    });
+                    setStatus("Found " + name + ". Tap to fill its address.");
+                }
+                @Override public void onFinished(int count) {
+                    discover.setEnabled(true);
+                    setStatus(count == 0 ? "No Cast devices found. Check Wi-Fi or enter TV IP manually." :
+                        "Found " + count + " device(s). Select your Vizio and tap Start pairing.");
+                }
+                @Override public void onFailure(String reason) {
+                    discover.setEnabled(true);
+                    setStatus(reason);
+                }
+            });
+        });
+
         Button start = action("Start pairing", Color.rgb(18, 84, 117));
         panel.addView(start);
         final LinearLayout pinPanel = new LinearLayout(this);
@@ -255,6 +295,8 @@ public final class MainActivity extends Activity {
         panel.addView(pinPanel);
 
         start.setOnClickListener(v -> {
+            discovery.stop();
+            discover.setEnabled(true);
             String host = ip.getText().toString().trim();
             if (!SmartCastProtocol.isPrivateIp(host)) {
                 setStatus("Enter the TV's private IPv4 address.");
@@ -286,11 +328,25 @@ public final class MainActivity extends Activity {
     private void showRemote(SecureStore.SavedTv savedTv) {
         tv = savedTv;
         base("Direct Vizio remote · " + savedTv.ip);
+        execute("Checking paired TV…",
+            () -> api.isPoweredOn(savedTv.ip, savedTv.token, savedTv.fingerprint),
+            on -> setStatus(on ? "TV connected and ready." : "TV paired but in standby."));
         LinearLayout launch = group("Quick launch");
         Button stremio = action("▶  Open Stremio Web on TV", Color.rgb(15, 109, 124));
         stremio.setTextSize(18);
         launch.addView(stremio);
         stremio.setOnClickListener(v -> command("Opening Stremio Web…", () -> api.launchStremio(tv.ip, tv.token, tv.fingerprint), "Stremio Web launch sent"));
+
+        LinearLayout pad = group("Gesture remote");
+        TextView padHint = text("Swipe to move • Tap center to select • One command per gesture", 12, SUB, false);
+        padHint.setPadding(0, 0, 0, dp(10));
+        pad.addView(padHint);
+        TouchpadView touch = new TouchpadView(this);
+        touch.setOnRemoteAction(key ->
+            command("Sending " + key + "…",
+                () -> api.sendKey(tv.ip, tv.token, tv.fingerprint, key),
+                key + " sent"));
+        pad.addView(touch, new LinearLayout.LayoutParams(-1, dp(255)));
 
         LinearLayout remote = group("Remote control");
         addRemoteRow(remote, new String[] { "", "▲", "" }, new String[] { "", "UP", "" });
@@ -301,7 +357,7 @@ public final class MainActivity extends Activity {
         addRemoteRow(remote, new String[] { "Input", "Pause", "Play" }, new String[] { "INPUT", "PAUSE", "PLAY" });
 
         LinearLayout search = group("Phone keyboard → TV search");
-        TextView searchNote = text("First focus a search/text field on the TV. Use your Pixel keyboard or its microphone, then Send text. SmartCast ASCII entry is experimental in Stremio Web.", 13, SUB, false);
+        TextView searchNote = text("First select the Search field on the TV, even if no TV keyboard appears. Type here using the phone keyboard or microphone, then tap Send. SmartCast ASCII entry is experimental inside Stremio Web.", 13, SUB, false);
         searchNote.setPadding(0, 0, 0, dp(12));
         search.addView(searchNote);
         EditText query = input("Type your search on the phone…", false);
@@ -378,9 +434,12 @@ public final class MainActivity extends Activity {
                 button.setTextSize(key.equals("OK") ? 20 : 15);
                 button.setContentDescription(key.equals("UP") ? "Move up" : key.equals("DOWN") ? "Move down" : key.equals("LEFT") ? "Move left" : key.equals("RIGHT") ? "Move right" : key);
                 row.addView(button, p);
-                button.setOnClickListener(v -> command("Sending " + key + "…",
-                    () -> api.sendKey(tv.ip, tv.token, tv.fingerprint, key),
-                    key + " sent"));
+                button.setOnClickListener(v -> {
+                    v.performHapticFeedback(android.view.HapticFeedbackConstants.KEYBOARD_TAP);
+                    command("Sending " + key + "…",
+                        () -> api.sendKey(tv.ip, tv.token, tv.fingerprint, key),
+                        key + " sent");
+                });
             }
         }
     }

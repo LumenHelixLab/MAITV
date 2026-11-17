@@ -9,8 +9,8 @@ android {
         applicationId = "tech.lumenhelix.maitv"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.4.0-alpha1"
+        versionCode = 2
+        versionName = "0.5.0-alpha2"
     }
     buildTypes {
         release {
