@@ -2,7 +2,7 @@
 
 ## Product definition
 
-**MAITV** is a local-first SmartCast control platform, initially targeting the Vizio V655-H9. It does not replace or flash ViziOS. The product's differentiation is direct navigation, one-tap Stremio Web, secure pairing and eventually keyboard search without requiring Chromecast or a TV-side APK.
+**MAITV** is a local-first SmartCast control platform, initially targeting the Vizio V655-H9. The Android private prerelease is available at https://github.com/LumenHelixLab/MAITV/releases/tag/v0.4.0-alpha1 . It does not replace or flash ViziOS. The product's differentiation is direct navigation, one-tap Stremio Web, secure pairing and eventually keyboard search without requiring Chromecast or a TV-side APK.
 
 ### Android alpha (packaged in this milestone)
 

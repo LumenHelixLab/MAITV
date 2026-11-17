@@ -62,7 +62,9 @@ The name is spelled **M-A-I-T-V**. This repository is maintained under **LumenHe
 - **Phone keyboard:** send ASCII text from Android's keyboard or built-in dictation to a focused TV input field. **Stremio Web search may still reject input** until we validate/repair its Conjure text-field handling.
 - **Build verification:** Android SDK 35 build passed, APK debug signature verified, and all four native Java unit tests passed. **Pairing and physical Android control have not yet been verified on a phone.**
 
-The alpha remains private and debug-signed. Read the [Android setup and security notes](android/README.md) and [MVP release gates](docs/MVP_PACKAGING.md) before installing or distributing it.
+**Private alpha download:** [MAITV Android APK v0.4.0-alpha1](https://github.com/LumenHelixLab/MAITV/releases/download/v0.4.0-alpha1/MAITV-Android-v0.4.0-alpha1-debug.apk) · [SHA-256 checksum](https://github.com/LumenHelixLab/MAITV/releases/download/v0.4.0-alpha1/MAITV-Android-v0.4.0-alpha1-debug.sha256). Sign into GitHub with authorized access to LumenHelixLab first; the repository and release are private.
+
+The alpha is debug-signed. Read the [Android setup and security notes](android/README.md) and [MVP release gates](docs/MVP_PACKAGING.md) before installing or distributing it.
 
 ## 🕹️ Quick start
 
