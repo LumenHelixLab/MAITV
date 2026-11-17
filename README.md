@@ -30,6 +30,7 @@
   <a href="docs/TV_TEST_SESSION.md"><strong>On-TV test</strong></a> ·
   <a href="docs/STREMIO_TORRENTIO.md"><strong>Torrentio setup</strong></a> ·
   <a href="android/README.md"><strong>Android remote</strong></a> ·
+  <a href="desktop/README.md"><strong>Windows PC remote</strong></a> ·
   <a href="docs/DEVICE.md"><strong>Device notes</strong></a>
 </div>
 
@@ -66,6 +67,18 @@ The name is spelled **M-A-I-T-V**. This repository is maintained under **LumenHe
 **Latest private alpha:** [MAITV Android APK v0.5.0-alpha2](https://github.com/LumenHelixLab/MAITV/releases/download/v0.5.0-alpha2/MAITV-Android-v0.5.0-alpha2-debug.apk) · [SHA-256 checksum](https://github.com/LumenHelixLab/MAITV/releases/download/v0.5.0-alpha2/MAITV-Android-v0.5.0-alpha2-debug.sha256). Sign into GitHub with authorized access to LumenHelixLab first; the repository and release are private.
 
 The alpha is debug-signed. Read the [Android setup and security notes](android/README.md) and [MVP release gates](docs/MVP_PACKAGING.md) before installing or distributing it.
+
+## 🖥️ MAITV Desktop — Windows PC client
+
+**MAITV Desktop v0.6.0-alpha.1** is a true Windows application, not the old command-line hub. It uses the [Electron desktop client](desktop/README.md) with a full Lumen Helix-branded remote interface, local Wi-Fi discovery and pairing, one-tap Stremio Web launch, Windows-protected credentials and optional experimental PC-to-TV text entry.
+
+- **Desktop navigation:** on-screen D-pad, OK, Back, Home, playback and volume, plus arrow-key / Enter / Escape shortcuts.
+- **Privacy:** fixed local SmartCast API operations only, certificate pinned after PIN pairing, no cloud service.
+- **Packaging:** NSIS installer and portable executable; **private alpha**, Windows binary code-signing and packaged-on-TV testing pending.
+- **Search route experiment:** one-click Stremio search URL with URL-encoded PC input, plus separate SmartCast ASCII typing. The official route is documented in Stremio's code, but Vizio Conjure compatibility is unverified.
+- **Unresolved:** Stremio Web's native search keyboard, and Torrentio visibility on the TV.
+
+Read the [PC app setup and build instructions](desktop/README.md). The desktop installer is a **separate deliverable** from the Android remote.
 
 ## 🕹️ Quick start
 

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MAITV Desktop | Lumen Helix</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" aria-label="Application navigation">
+    <div class="brand">
+      <img src="../../assets/lumen-helix-logo.png" alt="Lumen Helix official bulb" class="brand-logo">
+      <div class="brand-words"><div><span>LUMEN</span>helix</div><small>solutions</small></div>
+    </div>
+    <div class="product-mark"><div class="product-tag">CONNECTED ENTERTAINMENT LAB</div><h1>MAI<span>TV</span></h1><p>Make the screen yours.</p></div>
+    <nav aria-label="Sections">
+      <button class="nav-item active" data-tab="remote"><span aria-hidden="true">◈</span> Remote <em>01</em></button>
+      <button class="nav-item" data-tab="connect"><span aria-hidden="true">⌁</span> My Television <em>02</em></button>
+      <button class="nav-item" data-tab="search"><span aria-hidden="true">⌕</span> Search &amp; Apps <em>03</em></button>
+      <button class="nav-item" data-tab="about"><span aria-hidden="true">⊞</span> About <em>04</em></button>
+    </nav>
+    <div class="sidebar-bottom"><div class="privacy-dot">LOCAL-FIRST CONNECTION</div><p>No cloud control. No firmware changes.<br>Paired directly over Wi-Fi.</p><small>MAITV DESKTOP • PRIVATE ALPHA 0.6</small></div>
+  </aside>
+
+  <main class="content">
+    <header class="topbar">
+      <div><div class="tiny-heading">LUMEN HELIX / DEVICE CONTROL</div><div class="breadcrumb" id="section-name">Remote dashboard</div></div>
+      <div class="top-actions">
+        <label class="pin-switch"><input type="checkbox" id="topmost"> Always on top</label>
+        <span class="online-indicator" id="connection-pill"><i></i> NOT PAIRED</span>
+      </div>
+    </header>
+
+    <section class="page" id="page-remote">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="eyebrow">YOUR TELEVISION, REIMAGINED</div>
+          <h2>Take the <span>remote.</span></h2>
+          <p>Launch Stremio Web, navigate your Vizio, and control playback directly from your Windows PC.</p>
+          <div class="hero-actions">
+            <button class="primary" id="open-stremio"><span class="button-play">▶</span> OPEN STREMIO ON TV</button>
+            <button class="soft" id="hero-pair">Connect TV</button>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true"><div class="orbit o1"></div><div class="orbit o2"></div><div class="tv-art"><div class="tv-glow">MAI<span>TV</span></div><div class="tv-shine"></div></div><div class="stand"></div></div>
+      </div>
+
+      <div class="status-card">
+        <div class="status-icon">⌁</div>
+        <div class="status-copy"><strong id="device-name">No television paired</strong><p id="device-description">Connect your Vizio to enable the full remote.</p></div>
+        <button id="refresh-status" class="outline small">↻ CHECK STATUS</button>
+      </div>
+
+      <div class="split">
+        <section class="panel control-panel">
+          <div class="panel-head"><div><span class="panel-kicker">01 / NAVIGATION</span><h3>Digital Remote</h3></div><span class="pill">SMARTCAST</span></div>
+          <div class="dpad" aria-label="Directional remote control">
+            <button class="dpad-btn up" data-key="UP" aria-label="Up">▲</button>
+            <button class="dpad-btn left" data-key="LEFT" aria-label="Left">◀</button>
+            <button class="dpad-btn center" data-key="OK" aria-label="Select">OK</button>
+            <button class="dpad-btn right" data-key="RIGHT" aria-label="Right">▶</button>
+            <button class="dpad-btn down" data-key="DOWN" aria-label="Down">▼</button>
+          </div>
+          <div class="quick-row"><button class="remote-button" data-key="BACK">↶ Back</button><button class="remote-button" data-key="HOME">⌂ Home</button><button class="remote-button" data-key="MENU">≡ Menu</button></div>
+          <div class="divider"></div>
+          <div class="quick-row"><button class="remote-button" data-key="VOL_DOWN">Vol −</button><button class="remote-button" data-key="MUTE">Mute</button><button class="remote-button" data-key="VOL_UP">Vol +</button></div>
+          <div class="quick-row"><button class="remote-button" data-key="PLAY">▶ Play</button><button class="remote-button" data-key="PAUSE">Ⅱ Pause</button><button class="remote-button" data-key="INPUT">Input</button></div>
+          <p class="help-note">Desktop arrow keys, Enter, and Escape also operate the TV when focus is outside text fields.</p>
+        </section>
+        <section class="panel info-panel">
+          <div class="panel-head"><div><span class="panel-kicker">02 / YOUR APPS</span><h3>Stremio Bridge</h3></div></div>
+          <div class="app-entry"><div class="app-symbol">▶</div><div><strong>Stremio Web</strong><p>Launches on your Vizio via Conjure</p></div><span class="app-tag">SUPPORTED</span></div>
+          <button class="wide-soft" id="open-stremio-side">Launch on television <span>↗</span></button>
+          <button class="wide-soft secondary" id="open-stremio-pc">Open Stremio Web on PC <span>↗</span></button>
+          <div class="feature-border"><div class="feature-title">⌨ PC keyboard to TV</div><p>Focus a text field on the TV, then test sending characters from your computer. Stremio’s Conjure search box may reject the command; this is not yet a verified fix.</p><div class="search-row"><input id="remote-text" type="text" placeholder="Enter a short search..." maxlength="60" spellcheck="false" autocomplete="off"><button class="primary compact" id="send-text">SEND</button></div></div>
+          <div class="note-small">Torrentio and other add-ons remain in your Stremio account; this app does not bundle them or modify account settings.</div>
+        </section>
+      </div>
+    </section>
+
+    <section class="page hidden" id="page-connect">
+      <div class="page-title"><div class="eyebrow">SETUP &amp; SECURITY</div><h2>Connect a <span>television.</span></h2><p>Pair once over Wi-Fi using the four-digit code displayed on your Vizio. Saved credentials are encrypted by Windows.</p></div>
+      <div class="setup-grid">
+        <div class="panel">
+          <div class="panel-head"><div><span class="panel-kicker">STEP 01 / DISCOVER</span><h3>Find your Vizio</h3></div></div>
+          <button class="wide-soft" id="discover">⌁ Find TVs on this network <span>SCAN</span></button>
+          <div id="found-devices" class="found-devices" aria-live="polite"><p>Discovery is optional. You can enter an address manually.</p></div>
+          <label class="field-label" for="tv-ip">TV IPv4 address</label>
+          <input type="text" id="tv-ip" inputmode="decimal" placeholder="192.168.1.50" maxlength="15" spellcheck="false" autocomplete="off">
+          <p class="small-copy">The TV address is under Settings → Network → Network Information. Confirm discovered devices before pairing.</p>
+          <button class="primary full" id="start-pair">START PAIRING</button>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div><span class="panel-kicker">STEP 02 / AUTHORIZE</span><h3>Verify the PIN</h3></div></div>
+          <div class="pin-icon">⌗</div><p class="setup-message" id="pin-prompt">Start pairing to display a PIN on your TV. The code is never stored in MAITV.</p>
+          <label class="field-label" for="tv-pin">4-digit PIN from TV</label>
+          <input id="tv-pin" class="pin-input" inputmode="numeric" type="password" maxlength="4" pattern="[0-9]*" placeholder="••••" autocomplete="off">
+          <button class="primary full" id="finish-pair" disabled>VERIFY &amp; CONNECT</button>
+          <div class="secure-note">◇ Windows secure credential storage &amp; certificate pinning</div>
+        </div>
+      </div>
+      <div class="panel paired-panel"><div><span class="panel-kicker">DEVICE MANAGEMENT</span><h3 id="paired-name">No paired TV</h3><p id="paired-detail">Pair a Vizio to enable secure local control.</p></div><button id="forget-pair" class="outline danger" disabled>FORGET TELEVISION</button></div>
+    </section>
+
+    <section class="page hidden" id="page-search">
+      <div class="page-title"><div class="eyebrow">STREMIO INTEGRATION</div><h2>Search. <span>Without the TV keyboard.</span></h2><p>Try opening Stremio’s documented search route directly on the television from this PC. No TV text field needs to be focused for this route test.</p></div>
+      <div class="panel search-panel"><div class="panel-head"><div><span class="panel-kicker">CONTROLLED SEARCH ROUTE</span><h3>Search Stremio on TV</h3></div><span class="pill caution">TV TEST PENDING</span></div>
+        <label class="field-label" for="search-query">Search term (up to 60 characters)</label>
+        <div class="search-row large"><input id="search-query" type="text" maxlength="60" placeholder="Search movies or shows..." spellcheck="false" autocomplete="off"><button id="send-search" class="primary">SEARCH ON TV</button></div>
+        <p class="help-note">This opens a fixed Stremio Web search URL whose query parameter is encoded from your PC input. The route is present in official Stremio Web code, but its behavior in Vizio Conjure has not yet been verified. The separate ASCII text field on the Remote page remains an alternative experiment.</p>
+        <div class="alternatives"><div><strong>Stremio on this PC</strong><p>Use Stremio Web directly with your keyboard when the TV’s embedded browser cannot accept text.</p></div><button id="open-pc-search" class="outline">OPEN STREMIO WEB</button></div>
+      </div>
+      <div class="panel warning-panel"><h3>About Torrentio &amp; add-ons</h3><p>Stremio manages add-ons through the signed-in Stremio account. MAITV never stores a Torrentio URL or provider credential. If an add-on appears on PC but not on TV, verify the account and the TV browser’s add-on list separately.</p></div>
+    </section>
+
+    <section class="page hidden" id="page-about">
+      <div class="page-title"><div class="eyebrow">PROJECT STATUS</div><h2>Built for <span>control.</span></h2><p>MAITV Desktop 0.6.0 alpha — an independent Lumen Helix Solutions project.</p></div>
+      <div class="panel about-panel"><h3>What this release does</h3><p>Native Windows desktop app for PIN pairing, device discovery, a responsive digital remote, Stremio Web launch, status and experimental text input.</p>
+        <div class="about-stat"><span>Connection</span><strong>Local HTTPS / SmartCast</strong></div>
+        <div class="about-stat"><span>Credential storage</span><strong>Windows protected encryption</strong></div>
+        <div class="about-stat"><span>Bundled streaming content</span><strong>None</strong></div>
+        <div class="about-stat"><span>Firmware changes</span><strong>None</strong></div>
+      <p class="help-note">Hardware verification is limited to earlier MAITV/Conjure tests on the Vizio V655-H9. This newly packaged PC application still needs its own pairing and remote acceptance test. No third-party app endorsement is implied.</p></div>
+    </section>
+
+    <div id="toasts" class="toast-area" aria-live="polite"></div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

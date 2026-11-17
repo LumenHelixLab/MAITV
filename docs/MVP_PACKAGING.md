@@ -16,11 +16,13 @@
 - Forget-TV pairing control, clear connection status and no background telemetry.
 - **Not yet physically validated from Android**; the equivalent Danu one-tap Conjure launch and MAITV's TV D-pad navigation are previously verified.
 
-### Windows desktop hub (in-progress, not yet in release)
+### Windows PC client — MAITV Desktop v0.6 alpha
 
-- Existing MAITV input laboratory on Danu with ephemeral Conjure launching and seven-plus local tests.
-- Separate experimental hub implementation under hub/ is work-in-progress and must not be shipped until audit, full pairing recovery and service tests.
-- Windows installer, signed builds, background service and multi-TV support are deferred.
+- New standalone Electron/Windows desktop client under desktop/: an actual remote UI, on-demand TV discovery, on-screen PIN pairing, status, fixed one-tap Stremio Web launch, remote keys, and two search-input experiments.
+- Current-user Windows safeStorage encryption protects pairing credentials; the Vizio self-signed TLS certificate is fingerprint-pinned before AUTH headers are transmitted.
+- Nine Node protocol/profile tests passed; local fake-TV TLS pinning test passed; read-only mDNS discovery identified the V655-H9 on Danu's home network.
+- An NSIS installer and portable Windows EXE are built as **unsigned private alpha** packages. New packaged app still needs real PC-to-TV pairing and navigation validation.
+- The old experimental hub/ command-line code is not included in the Windows package. Background service, multi-TV profiles, and signed production binaries are deferred.
 
 ## Packaging gates
 
@@ -38,6 +40,11 @@
 | Independent security + license audit | **Pending** |
 | Organization production code-signing key | **Pending** |
 | Public repository and promotion | **Not approved** (keep private) |
+| MAITV Desktop Windows UI and fixed TV command bridge | Implemented; screenshot and dev-window smoke checked on Danu |
+| Windows protocol tests and fake-TV TLS rejection | 9/9 tests passing; wrong certificate prevented AUTH transmission |
+| Windows installer and portable binaries | Private alpha build completed locally; unsigned |
+| New desktop PC client paired with actual Vizio | **Pending** |
+| Stremio URL-route search on Vizio | **Pending**; official route implemented but Conjure behavior unverified |
 
 ## Second phase
 
