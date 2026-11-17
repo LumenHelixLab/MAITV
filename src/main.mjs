@@ -8,11 +8,19 @@ const eventList = document.getElementById("event-list");
 const eventCount = document.getElementById("event-count");
 const report = document.getElementById("report");
 const clipboardStatus = document.getElementById("copy-status");
+let relayToHub = false;
+fetch("/_maitv/config", { cache: "no-store" })
+  .then(res => res.ok ? res.json() : null)
+  .then(cfg => {
+    relayToHub = cfg?.capture === true;
+    if (relayToHub) clipboardStatus.textContent = "Temporary TV test: sanitized key events are being relayed to the local Danu hub.";
+  })
+  .catch(() => {});
 const panels = {
   bridge: ["Bridge recovery", "Earlier Stremio bridge reportedly worked; its source has not yet been recovered. The historical Danu server on port 11470 is not confirmed active."],
   remote: ["Remote diagnostics", "Press D-pad, OK and Back here to discover which DOM events are delivered. Unknown events remain visible in the local event log."],
   addons: ["Stremio add-ons", "Torrentio is a Stremio add-on, not an Android app. Add-on synchronization and playback are separate integration tasks."],
-  safety: ["Safety policy", "This prototype does not connect to the TV, flash firmware, pair devices, upload diagnostics, or access privileged APIs."]
+  safety: ["Safety policy", "No firmware writes, TV pairing, or privileged device APIs. In explicitly enabled on-TV test sessions, sanitized key events are sent only to Danu and retained in memory until the test server stops."]
 };
 const diagnostics = [];
 const maxEvents = 30;
@@ -26,7 +34,7 @@ function focusTile(index) {
 }
 
 function reportText() {
-  return "MAITV remote diagnostics (local; no connection to TV)\n" +
+  return "MAITV remote diagnostics (browser event capture; no firmware changes)\n" +
     "Model to validate: Vizio V655-H9 / firmware 1.720.9.1-1\n" +
     "Capture: browser KeyboardEvent only. No printable characters stored.\n" +
     JSON.stringify(diagnostics, null, 2);
@@ -41,6 +49,14 @@ function record(event, phase) {
   eventList.querySelector(".placeholder")?.remove();
   const item = makeRemoteDiagnostic(event, phase);
   diagnostics.push(item);
+  if (relayToHub) {
+    fetch("/_maitv/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(item),
+      cache: "no-store"
+    }).catch(() => {});
+  }
   if (diagnostics.length > maxEvents) diagnostics.shift();
   const li = document.createElement("li");
   li.textContent = item.phase + " · key " + item.key + " · code " + item.code +
@@ -99,7 +115,7 @@ document.addEventListener("keyup", event => {
 document.getElementById("clear-events").addEventListener("click", () => {
   diagnostics.length = 0;
   eventList.replaceChildren();
-  clipboardStatus.textContent = "Event log cleared locally.";
+  clipboardStatus.textContent = relayToHub ? "On-screen log cleared; Danu capture remains until the test server stops." : "Event log cleared locally.";
   output.textContent = "None";
   showReport();
 });

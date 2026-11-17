@@ -1,4 +1,4 @@
-# MAITV remote-input diagnostics — v0.2
+# MAITV remote-input diagnostics — v0.3
 
 ## Why this exists
 
@@ -12,7 +12,7 @@ The original Stremio bridge was reported to connect, but physical remote/control
 - `key`, `code`, `keyCode`, `which`, repeat and the normalized action.
 - Arrow movements, Enter/OK and Back/Escape handling when those DOM events reach the page.
 - Printable single-character keystrokes masked; editing fields aren't recorded.
-- Local, manually copyable JSON. No automatic upload or telemetry.
+- Default mode: locally copyable JSON, no automatic transfer. During an explicitly enabled on-TV test, sanitized key metadata is relayed to Danu's RAM only; no cloud telemetry.
 
 ## Run locally on Danu (does not touch TV)
 
@@ -24,20 +24,21 @@ npm run dev
 
 Open `http://127.0.0.1:4173` on **Danu** and use the arrow keys, Enter, Escape and Backspace. Observe the on-screen log.
 
-## Optional LAN preview for a later on-TV test
+## Optional approved on-TV session
 
 Do not enable LAN mode on a public or untrusted network. By default the server listens only on `127.0.0.1`, and no firewall settings are changed.
 
 ```powershell
-$env:MAITV_HOST = '0.0.0.0'
+$env:MAITV_HOST = '<Danu private-LAN IPv4>'
+$env:MAITV_CAPTURE = '1'
+$env:MAITV_CAPTURE_FROM = '<approved TV IPv4>'
 npm run dev
-# Stop the server with Ctrl+C after the session.
-Remove-Item Env:\MAITV_HOST
+# The session auto-expires after 15 minutes. Press Home on the TV when finished.
 ```
 
 To open the hosted page on the TV, it must be accessible from the TV's network and launched through an **authorized** TV/browser app. A Vizio SmartCast Conjure URL launch may be supported by third-party libraries, but it requires a compatible device, explicit pairing/authorization and a reachable URL. This project's prototype does **not** pair with the TV, store tokens, or launch apps. Do not put pairing tokens into this repository, browser storage or issue reports.
 
-No router changes, broad firewall exceptions, or device pairing actions should occur without a specific device-side compatibility test and authorization. The use of `0.0.0.0` is an *explicit optional development choice*, not the default.
+No router changes, broad firewall exceptions, or device pairing actions should occur without specific authorization. Bind to the private Wi-Fi interface rather than every local network interface. See [controlled TV test record](TV_TEST_SESSION.md).
 
 ## Interpreting the test
 
@@ -60,6 +61,7 @@ After a controlled test, provide only sanitized key names and numeric keycodes (
 - [x] Create browser keyboard-event inspector and keyboard/legacy-key normalization tests.
 - [x] Provide opt-in LAN preview without enabling it automatically.
 - [ ] Recover prior Stremio bridge source on the OmniBook (currently offline).
-- [ ] Test with actual Vizio V655-H9 remote via an authorized browser/WebView.
+- [x] Verify an authorized temporary Conjure page launch and browser configuration request.
+- [ ] Verify physical Vizio V655-H9 button events via the on-TV diagnostic page.
 - [ ] Transfer confirmed mappings to the bridge and test Stremio navigation.
 - [ ] Verify Torrentio add-on setup and lawful-content playback separately.

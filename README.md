@@ -25,6 +25,7 @@
   <a href="#-get-involved"><strong>Contribute</strong></a> ·
   <a href="#-github-stars--activity"><strong>Star history</strong></a> ·
   <a href="docs/REMOTE_DIAGNOSTICS.md"><strong>Remote diagnostics</strong></a> ·
+  <a href="docs/TV_TEST_SESSION.md"><strong>On-TV test</strong></a> ·
   <a href="docs/DEVICE.md"><strong>Device notes</strong></a>
 </div>
 
@@ -41,7 +42,7 @@ The name is spelled **M-A-I-T-V**. This repository is maintained under **LumenHe
 
 | 🧭 Focus | 🛠️ What exists now | 🚧 What comes next |
 |:--|:--|:--|
-| **Remote navigation** | On-screen keyboard-event inspector, legacy keyCode fallback, focus grid, select/back and automated tests | Capture and validate physical Vizio remote events |
+| **Remote navigation** | Browser key-event inspector, opt-in Danu relay, focus grid, select/back; eight automated tests | Confirm physical Vizio remote events and integrate with Stremio |
 | **Custom home** | Responsive four-tile browser mockup with a visible focus indicator | An optional, reversible launcher adapter |
 | **Stremio integration** | Original MA.I.TV handoff and Conjure launch findings recovered; bridge source still missing | Recover source, verify transport and navigation |
 | **Add-ons** | Stremio/Torrentio integration plan | Test account synchronization and playback separately |
@@ -123,14 +124,16 @@ See [device details](docs/DEVICE.md) and the [technical plan](docs/TECHNICAL_PLA
 - [x] Add automated directional-input tests and CI
 - [x] Add privacy-conscious DOM key-event inspector with modern and legacy mappings
 - [x] Document opt-in LAN preview without enabling network access by default
+- [x] Launch MAITV through Conjure; confirm the TV requested the page and configuration
+- [x] Add temporary, source-restricted, in-memory key-event relay
 - [ ] Recover the previous MAITV/Stremio bridge source
-- [ ] Identify real remote key events on the V655-H9
+- [ ] Observe actual remote-button events on the V655-H9 (physical test still pending)
 - [ ] Validate focus movement, OK and Back on target hardware
 - [ ] Integrate Stremio add-on configuration and test playback
 - [ ] Prototype an optional launcher with a documented rollback path
 - [ ] Complete a security/licensing review before any public release
 
-**Milestone 0.2: remote-event diagnostic lab.** Seven automated input, navigation and local HTTP smoke tests pass on Danu. Actual Vizio WebView key events and on-TV installation remain unverified. This is not a production install.
+**Milestone 0.3: controlled Conjure input test.** Eight automated input, navigation, capture, and HTTP smoke tests pass on Danu. The Vizio accepted the ephemeral test-page launch and loaded its browser code; physical remote-button delivery still requires confirmation. This is not a production install.
 
 ## ⭐ GitHub stars & activity
 
