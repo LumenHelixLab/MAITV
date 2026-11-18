@@ -18,6 +18,26 @@ test("every desktop interactive control has contextual help", () => {
     assert.ok(selector && js.includes(selector), "Missing tooltip: " + attrs);
   }
 });
+test("Stremio account helper requires deliberate password field confirmation and clears it",()=>{
+  assert.match(html, /id="open-signin-tv"/);
+  assert.match(html, /id="login-password" type="password"/);
+  assert.match(html, /id="send-login-password"[^>]*disabled/);
+  assert.match(html, /id="confirm-password-focus" type="checkbox"/);
+  const app = fs.readFileSync(path.join(root,"app.js"),"utf8");
+  assert.match(app, /launchSignIn/);
+  assert.match(app, /if\(isPassword && !el\("confirm-password-focus"\)\.checked\)/);
+  assert.match(app, /field\.value=""; \/\/ Never retain login input/);
+  assert.match(app, /if\(isPassword\)el\("confirm-password-focus"\)\.checked=false/);
+});
+test("Stremio direct navigation buttons map to fixed application actions",()=>{
+  const app=fs.readFileSync(path.join(root,"app.js"),"utf8");
+  for(const section of ["home","library","addons","settings"]){
+    assert.match(html,new RegExp('id="stremio-go-'+section+'" data-stremio-route="'+section+'"'));
+    assert.match(js,new RegExp('"#stremio-go-'+section+'"'));
+  }
+  assert.match(app,/window\.maitv\.launchSection\(target\)/);
+  assert.match(app,/querySelectorAll\("\[data-stremio-route\]"\)/);
+});
 test("discovered Vizio selection is explained and keyboard accessible", () => {
   assert.match(html, /id="scan-instruction"/);
   assert.match(html, /click your Vizio TV/i);

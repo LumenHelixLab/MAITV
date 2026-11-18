@@ -81,6 +81,52 @@ async function launch(){
   }catch(err){toast(userError(err),true);}
   finally{for(const b of [el("open-stremio"),el("open-stremio-side")])b.disabled=false;}
 }
+async function launchSection(target){
+  if(!paired){section("connect");toast("Pair your TV before navigating Stremio.",true);return;}
+  const button=document.querySelector('[data-stremio-route="'+target+'"]');
+  if(!button)return;
+  button.disabled=true;
+  try{
+    const result=await window.maitv.launchSection(target);
+    toast(result.label);
+    setTimeout(()=>refreshStatus(true),1100);
+  }catch(err){toast(userError(err),true);}
+  finally{button.disabled=false;}
+}
+async function launchSignIn(){
+  if(!paired){section("connect");toast("Pair your TV first.",true);return;}
+  const button=el("open-signin-tv");
+  button.disabled=true;
+  try{
+    const result=await window.maitv.launchSignIn();
+    toast(result.label);
+    setTimeout(()=>refreshStatus(true),1100);
+  }catch(err){toast(userError(err),true);}
+  finally{button.disabled=false;}
+}
+async function sendLoginText(fieldId,buttonId,isPassword=false){
+  if(!paired){section("connect");toast("Pair your TV first.",true);return;}
+  const field=el(fieldId);
+  const button=el(buttonId);
+  const value=field.value;
+  if(!value.length || value.length>60 || /[^\x20-\x7e]/.test(value)){
+    field.value="";
+    toast("Enter 1–60 printable ASCII characters. No text was sent.",true);
+    return;
+  }
+  if(isPassword && !el("confirm-password-focus").checked){
+    toast("Confirm that the Stremio password field is focused on your television first.",true);
+    return;
+  }
+  field.value=""; // Never retain login input, even if TV delivery fails.
+  button.disabled=true;
+  if(isPassword)el("confirm-password-focus").checked=false;
+  try{
+    await window.maitv.text(value);
+    toast(isPassword ? "Private text command sent. Check the password field on TV." : "Email typing command sent. Check the email field on TV.");
+  }catch(err){toast(userError(err),true);}
+  finally{button.disabled=isPassword ? !el("confirm-password-focus").checked : false;}
+}
 async function sendText(field){
   if(!paired){toast("Connect your TV first.",true);return;}
   const value=field.value;
@@ -208,6 +254,11 @@ el("open-stremio-side").onclick=launch;
 el("hero-pair").onclick=()=>section("connect");
 el("open-stremio-pc").onclick=openPC;
 el("open-pc-search").onclick=openPC;
+el("open-signin-tv").onclick=launchSignIn;
+document.querySelectorAll("[data-stremio-route]").forEach(b=>b.onclick=()=>launchSection(b.dataset.stremioRoute));
+el("send-login-email").onclick=()=>sendLoginText("login-email","send-login-email");
+el("send-login-password").onclick=()=>sendLoginText("login-password","send-login-password",true);
+el("confirm-password-focus").onchange=e=>{el("send-login-password").disabled=!e.target.checked;};
 el("discover").onclick=discover;
 el("start-pair").onclick=startPair;
 el("finish-pair").onclick=finishPair;

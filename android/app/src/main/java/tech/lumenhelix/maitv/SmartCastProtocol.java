@@ -27,6 +27,7 @@ import javax.net.ssl.X509TrustManager;
  */
 final class SmartCastProtocol {
     static final String STREMIO_WEB = "https://web.stremio.com/";
+    static final String STREMIO_SIGNIN = STREMIO_WEB + "#/intro";
     static final int SMARTCAST_PORT = 7345;
 
     static final class Challenge {
@@ -220,6 +221,33 @@ final class SmartCastProtocol {
             .put("NAME_SPACE", 4)
             .put("APP_ID", "17")
             .put("MESSAGE", STREMIO_WEB);
+        request(host, "/app/launch", new JSONObject().put("VALUE", value), token, certPin);
+    }
+
+    static String stremioSectionUrl(String section) {
+        if (section == null) throw new IllegalArgumentException("Unknown Stremio page");
+        switch (section) {
+            case "home": return STREMIO_WEB + "#/";
+            case "library": return STREMIO_WEB + "#/library";
+            case "addons": return STREMIO_WEB + "#/addons";
+            case "settings": return STREMIO_WEB + "#/settings";
+            default: throw new IllegalArgumentException("Unknown Stremio page");
+        }
+    }
+
+    void launchSection(String host, String token, String certPin, String section) throws Exception {
+        JSONObject value = new JSONObject()
+            .put("NAME_SPACE", 4)
+            .put("APP_ID", "17")
+            .put("MESSAGE", stremioSectionUrl(section));
+        request(host, "/app/launch", new JSONObject().put("VALUE", value), token, certPin);
+    }
+
+    void launchSignIn(String host, String token, String certPin) throws Exception {
+        JSONObject value = new JSONObject()
+            .put("NAME_SPACE", 4)
+            .put("APP_ID", "17")
+            .put("MESSAGE", STREMIO_SIGNIN);
         request(host, "/app/launch", new JSONObject().put("VALUE", value), token, certPin);
     }
 

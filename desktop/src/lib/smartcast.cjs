@@ -4,6 +4,13 @@ const tls = require("node:tls");
 const crypto = require("node:crypto");
 
 const STREMIO_WEB = "https://web.stremio.com/";
+const STREMIO_SIGNIN = STREMIO_WEB + "#/intro";
+const STREMIO_SECTIONS = Object.freeze({
+  home: STREMIO_WEB + "#/",
+  library: STREMIO_WEB + "#/library",
+  addons: STREMIO_WEB + "#/addons",
+  settings: STREMIO_WEB + "#/settings"
+});
 const KEYMAP = Object.freeze({
   UP: [3,8], DOWN:[3,0], LEFT:[3,1], RIGHT:[3,7], OK:[3,2],
   BACK:[4,0], HOME:[4,3], MENU:[4,8],
@@ -153,6 +160,18 @@ class SmartCast {
       body:{VALUE:{NAME_SPACE:4,APP_ID:"17",MESSAGE:STREMIO_WEB}}});
     return {ok:true,label:"Stremio Web launch sent"};
   }
+  async launchSection(host,token,fingerprint,section){
+    if(!Object.prototype.hasOwnProperty.call(STREMIO_SECTIONS,section))
+      throw new Error("Unknown Stremio page.");
+    await this.send({host,token,fingerprint,method:"PUT",path:"/app/launch",
+      body:{VALUE:{NAME_SPACE:4,APP_ID:"17",MESSAGE:STREMIO_SECTIONS[section]}}});
+    return {ok:true,label:"Stremio "+section+" page requested. Check the television."};
+  }
+  async launchSignIn(host,token,fingerprint){
+    await this.send({host,token,fingerprint,method:"PUT",path:"/app/launch",
+      body:{VALUE:{NAME_SPACE:4,APP_ID:"17",MESSAGE:STREMIO_SIGNIN}}});
+    return {ok:true,label:"Stremio sign-in route sent. Confirm the sign-in screen on TV."};
+  }
   async launchSearch(host,token,fingerprint,query){
     const url=stremioSearchUrl(query);
     await this.send({host,token,fingerprint,method:"PUT",path:"/app/launch",
@@ -184,4 +203,4 @@ class SmartCast {
   }
 }
 
-module.exports={STREMIO_WEB,KEYMAP,privateIPv4,asciiText,stremioSearchUrl,normalizePin,requestTV,SmartCast,TrustOnPairAgent};
+module.exports={STREMIO_WEB,STREMIO_SIGNIN,STREMIO_SECTIONS,KEYMAP,privateIPv4,asciiText,stremioSearchUrl,normalizePin,requestTV,SmartCast,TrustOnPairAgent};

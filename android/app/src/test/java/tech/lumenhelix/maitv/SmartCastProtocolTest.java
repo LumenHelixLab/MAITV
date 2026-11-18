@@ -47,5 +47,14 @@ public class SmartCastProtocolTest {
 
     @Test public void stremioLaunchTargetIsFixed() {
         assertEquals("https://web.stremio.com/", SmartCastProtocol.STREMIO_WEB);
+        assertEquals("https://web.stremio.com/#/intro", SmartCastProtocol.STREMIO_SIGNIN);
+        assertEquals("https://web.stremio.com/#/", SmartCastProtocol.stremioSectionUrl("home"));
+        assertEquals("https://web.stremio.com/#/library", SmartCastProtocol.stremioSectionUrl("library"));
+        assertEquals("https://web.stremio.com/#/addons", SmartCastProtocol.stremioSectionUrl("addons"));
+        assertEquals("https://web.stremio.com/#/settings", SmartCastProtocol.stremioSectionUrl("settings"));
+        for (String forbidden : new String[] {"", "http://example.com", "../settings", "constructor"}) {
+            try { SmartCastProtocol.stremioSectionUrl(forbidden); fail("Should reject " + forbidden); }
+            catch (IllegalArgumentException expected) { }
+        }
     }
 }

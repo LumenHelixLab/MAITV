@@ -2,6 +2,19 @@
 
 All notable changes to MAITV are recorded here. MAITV uses [Semantic Versioning](https://semver.org/) with one coordinated version across the browser/TV test client, Windows desktop client and Android companion. Release candidates are **not** stable releases.
 
+## [1.0.0-rc.2] - 2026-11-17 (candidate under physical-TV validation)
+
+### Added
+- A fixed, official Stremio sign-in route launched directly from MAITV Windows and Android remotes, bypassing the inaccessible sidebar.
+- Four direct Stremio navigation shortcuts (Home, Settings, Add-ons, Library) on the Windows and Android remotes, avoiding an inaccessible sidebar. Routes use an exact allowlist.
+- Windows first-run account assistance with email typing, masked password input, focus confirmation, and prompt clearing of entered credentials.
+- Android phone-keyboard account assistance and a separate private password entry with explicit focus confirmation.
+- Regression tests for the fixed login route and credential-entry guardrails.
+
+### Unverified
+- Vizio Conjure may reject keystrokes or the sign-in URL; physical-TV testing is required before claiming working account login or Torrentio synchronization.
+- MAITV does not embed Stremio credentials, silently authenticate, automatically install Torrentio, or alter TV firmware.
+
 ## [1.0.0-rc.1] - 2026-11-17
 
 ### Added
